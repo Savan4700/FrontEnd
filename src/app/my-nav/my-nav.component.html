@@ -1,0 +1,203 @@
+<header class="topbar">
+  <nav class="navbar top-navbar navbar-expand-md navbar-light">
+      <div class="navbar-header">
+          <a class="navbar-brand">
+              <b>
+                    <!-- {{utilsService.isUnsavedFromDetected}} -->
+                  <span class="text-white">RadheKrishna Admin  </span>
+              </b>
+              <!-- <b><img src="assets/images/logo.png" alt="homepage" /> </b> -->
+          </a>
+      </div>
+      <!-- End Logo -->
+      <div class="navbar-collapse">
+          <!-- toggle and nav items -->
+          <ul class="navbar-nav mr-auto mt-md-0">
+              <!-- This is  -->
+              <li class="nav-item">
+                  <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark">
+                      <i class="mdi mdi-menu"></i>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark">
+                      <i class="ti-menu"></i>
+                  </a>
+              </li>
+              <!-- ============================================================== -->
+              <!-- Search -->
+              <!-- ============================================================== -->
+              <li class="nav-item hidden-sm-down search-box">
+                  <a class="nav-link hidden-sm-down text-muted waves-effect waves-dark">
+                      <i class="ti-search"></i>
+                  </a>
+                  <form class="app-search">
+                      <input type="text" class="form-control" placeholder="Search & enter">
+                      <a class="srh-btn">
+                          <i class="ti-close"></i>
+                      </a>
+                  </form>
+              </li>
+          </ul>
+          <!-- User profile and search -->
+          <ul class="navbar-nav my-lg-0">
+              <!-- Profile -->
+              <li class="nav-item">
+                    <!-- (click)="openSettings()"   [routerLink]="[ '/home/work_area/setting/setting/organization-profile']" -->
+                  <a  class="nav-link" title="Settings">
+                      <i class="ti-settings"></i>
+                  </a>
+              </li>
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="#" data-toggle="dropdown" aria-haspopup="true"
+                      aria-expanded="false">
+                      <img src="assets/images/user.jpg" alt="user" class="profile-pic" />
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right scale-up">
+                      <ul class="dropdown-user">
+                          <li>
+                              <div class="dw-user-box">
+                                  <div class="u-img">
+                                      <img src="assets/images/user.jpg" alt="user">
+                                  </div>
+                                  <div class="u-text">
+                                      <h4>savan tandel</h4>
+                                      <p class="text-muted">savan@gmail.com</p>
+                                      <a class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+                                  </div>
+                              </div>
+                          </li>
+                          <li role="separator" class="divider"></li>
+                          <li>
+                              <a>
+                                  <i class="ti-settings"></i> Master Setting</a>
+                          </li>
+                          <li role="separator" class="divider"></li>
+                          <!-- (click)="homeService.logout()" -->
+                          <li >
+                              <a>
+                                  <i class="fa fa-power-off"></i> Logout</a>
+                          </li>
+                      </ul>
+                  </div>
+              </li>
+
+          </ul>
+      </div>
+  </nav>
+</header>
+<!-- Top header End -->
+
+
+<!-- Sidebar -->
+
+<aside class="left-sidebar">
+  <!-- Sidebar scroll-->
+  <div class="scroll-sidebar">
+      <!-- Sidebar navigation--> 
+      <nav class="sidebar-nav">
+            <!-- [hidden]="utilsService.showSettingsmenu" -->
+          <ul  id="sidebarnav">
+              <li>
+                  <a [routerLink]="['dashboard']" [routerLinkActive]="['active']" class="waves-effect waves-dark" [routerLinkActive]="['active']">
+                      <i class="mdi mdi-chart-bubble"></i>
+                      <span class="hide-menu">Dashboard</span>
+                  </a>
+              </li>
+              <li>
+                  <a [routerLink]="['customer_list']" [routerLinkActive]="['active']" class="waves-effect waves-dark" [routerLinkActive]="['active']">
+                      <i class="mdi mdi-chart-bubble"></i>
+                      <span class="hide-menu"> Customer </span>
+                  </a>
+              </li>
+              <li>
+                  <a class="has-arrow waves-effect waves-dark">
+                      <i class="ti-shopping-cart-full"></i>
+                      <span class="hide-menu">Tab1</span>
+                  </a>
+                  <ul aria-expanded="false" class="collapse">
+                      <li>
+                          <a [routerLink]="[ 'item/view-item-group']" [routerLinkActive]="['active']"> Item Group</a>
+                      </li>
+                      <li>
+                          <a [routerLink]="[ 'item/view-item']" [routerLinkActive]="['active']"> Items</a>
+                      </li>
+                  </ul>
+              </li>
+
+              <li>
+                  <a [routerLink]="['purchaseorder']" [routerLinkActive]="['active']" class="waves-effect waves-dark" [routerLinkActive]="['active']">
+                      <i class="ti ti-clipboard"></i>
+                      <span class="hide-menu"> Tab1 </span>
+                  </a>
+              </li>
+              <li>
+                  <a [routerLink]="['deliverychallan']" class="waves-effect waves-dark" [routerLinkActive]="['active']">
+                      <i class="ti ti-agenda"></i>
+                      <span class="hide-menu">Tab1</span>
+                  </a>
+              </li>
+              <li>
+                  <a [routerLink]="['bill']" [routerLinkActive]="['active']" class="waves-effect waves-dark" [routerLinkActive]="['active']">
+                      <i class="ti ti-clipboard"></i>
+                      <span class="hide-menu"> Tab1 </span>
+                  </a>
+              </li>
+              <li>
+                  <a [routerLink]="['item-used']" class="waves-effect waves-dark" [routerLinkActive]="['active']">
+                      <i class="ti ti-agenda"></i>
+                      <span class="hide-menu">Tab1</span>
+                  </a>
+              </li>
+              <li>
+                  <a class="has-arrow waves-effect waves-dark">
+                      <i class="ti-shopping-cart-full"></i>
+                      <span class="hide-menu">Tab1</span>
+                  </a>
+                  <ul aria-expanded="false" class="collapse">
+                      <li>
+                          <a [routerLink]="[ 'report/inventorysummary']" [routerLinkActive]="['active']"> Inventory Summary</a>
+                      </li>
+                      <!--   <li>
+                          <a [routerLink]="[ 'report/item-wise-qty-used']" [routerLinkActive]="['active']"> Item Wise Qty Used </a>
+                      </li> -->
+                      <li>
+                          <a [routerLink]="[ 'report/item-group-wise-qty-used']" [routerLinkActive]="['active']"> Qty Used/Purchase Report</a>
+                      </li>
+                      <li>
+                          <a [routerLink]="[ 'report/agency-wise-purchase']" [routerLinkActive]="['active']"> Agency/Item Qty Purchase</a>
+                      </li>
+                      <li>
+                          <a [routerLink]="[ 'report/agency-wise-current-item-rate']" [routerLinkActive]="['active']"> Agency Wise Item Rate</a>
+                      </li>
+                  </ul>
+              </li>
+          </ul>
+      </nav>
+      <!-- End Sidebar navigation -->
+  </div>
+  <!-- End Sidebar scroll-->
+  <!-- Bottom points-->
+  <div class="sidebar-footer">
+      <a class="link width100">
+          Version 1.9
+      </a>
+  </div>
+  <!-- End Bottom points-->
+</aside>
+
+<!-- page wrapper -->
+
+<!-- page wrapper -->
+<div class="page-wrapper">
+  <div class="container-fluid">
+      <router-outlet></router-outlet>
+      <!-- <div class="lazyloader" [hidden]="utilsService.loaderStart <= 0"> -->
+      <!-- <div class="lazyloader" [hidden]="utilsService.loaderStart <= 0">
+          <div class="loaderinner">
+              <div class="loader"></div>
+          </div>
+      </div> -->
+      <footer class="footer"> © 2018 Developed by TechHive </footer>
+  </div>
+</div>

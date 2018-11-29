@@ -1,0 +1,56 @@
+
+/*
+Template Name: Techhive Admin
+Author: Sandip patel
+Email: sandip7023@gmail.com
+*/
+/*Theme Colors*/    
+/*bootstrap Color*/
+/*Light colors*/
+/*Normal Color*/
+/*Extra Variable*/
+/*Preloader*/
+.preloader { width: 100%; height: 100%; top: 0px; position: fixed; z-index: 99999; background: #fff; }
+.preloader .cssload-speeding-wheel { position: absolute; top: calc(50% - 3.5px); left: calc(50% - 3.5px); }
+/*******************
+/*Top bar
+*******************/
+.topbar { background: #2288e3; }
+.topbar .navbar-header { background: rgba(0, 0, 0, 0.05); }
+.topbar .top-navbar .navbar-header .navbar-brand .dark-logo { display: none; }
+.topbar .top-navbar .navbar-header .navbar-brand .light-logo { display: inline-block; color: rgba(255, 255, 255, 0.8); }
+.topbar .navbar-light .navbar-nav .nav-item > a.nav-link { color: #ffffff !important; }
+.topbar .navbar-light .navbar-nav .nav-item > a.nav-link:hover, .topbar .navbar-light .navbar-nav .nav-item > a.nav-link:focus { color: rgba(255, 255, 255, 0.8) !important; }
+/*******************
+/*General Elements
+*******************/
+a.link:hover, a.link:focus { color: #2288e3 !important; }
+.bg-theme { background-color: #2288e3 !important; }
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus { background-color: #2288e3; border-color: #2288e3; }
+.right-sidebar .rpanel-title { background: #2288e3; }
+.stylish-table tbody tr:hover, .stylish-table tbody tr.active { border-left: 4px solid #2288e3; }
+.text-themecolor { color: #2288e3 !important; }
+.profile-tab li a.nav-link.active, .customtab li a.nav-link.active { border-bottom: 2px solid #2288e3; color: #2288e3; }
+.profile-tab li a.nav-link:hover, .customtab li a.nav-link:hover { color: #2288e3; }
+/*******************
+/*Buttons
+*******************/
+.btn-themecolor, .btn-themecolor.disabled { background: #2288e3; color: #ffffff; border: 1px solid #2288e3; }
+.btn-themecolor:hover, .btn-themecolor.disabled:hover { background: #2288e3; opacity: 0.7; border: 1px solid #2288e3; }
+.btn-themecolor.active, .btn-themecolor:focus, .btn-themecolor.disabled.active, .btn-themecolor.disabled:focus { background: #028ee1; }
+.btn-info.disabled, .btn-info:disabled { color: #fff; background-color: #1e88e5; border-color: #1e88e5;}
+.heading_styled::after {background-color:#1e88e5; }
+/*******************
+/*sidebar navigation
+*******************/
+.sidebar-nav { background: #fff; }
+.sidebar-nav ul li a { color: #607d8b; }
+.sidebar-nav ul li a.active, .sidebar-nav ul li a:hover { color: #438DE8; }
+.sidebar-nav ul li a.active { color: #263238; }
+.sidebar-nav ul li.nav-small-cap { color: #99abb4; }
+.sidebar-nav > ul > li > a.active i, .sidebar-nav > ul > li > a:hover i { color: #438DE8; }
+.sidebar-nav > ul > li > a i { color: #99abb4;    width: 30px; }
+.sidebar-nav > ul > li > a.active { font-weight: 400; background: #ffffff; color: #2288e3; }
+.sidebar-nav > ul > li.active > a, .sidebar-nav > ul > li.active:hover > a { color: #ffffff !important; background: #438DE8 !important; }
+.sidebar-nav > ul > li.active > a i, .sidebar-nav > ul > li.active:hover > a i { color: #ffffff; }
+.sidebar-nav > ul > li.active > a:after, .sidebar-nav > ul > li.active:hover > a:after { border-color: #ffffff; }

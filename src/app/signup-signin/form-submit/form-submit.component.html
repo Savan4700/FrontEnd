@@ -1,0 +1,113 @@
+<div class="container" style="padding: 0px !important">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="flex box-shadow mt-120 ">
+        <div class="regi_infograph">
+          <img src="assets/img/radhekrishna.jpeg" class="regi_img">
+          <p class="text-center">Have an account?
+            <a [routerLink]="['/signup-login/signup/login']">Log In</a>
+          </p>
+        </div>
+        <div class="forms_regi">
+          <h3>Create Your Account</h3>
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group required">
+                <label>First Name</label>
+                <input [(ngModel)]="formSubmitService.registerUser.firstName" [formControl]="formSubmitService.form.controls['firstname']"
+                  type="text" tabindex="1" maxlength="{{utilsService.validationService.FIRSTNAME}}" class="form-control">
+                <h6 *ngIf="formSubmitService.form.controls['firstname'].hasError('required') && formSubmitService.form.controls['firstname'].touched">{{utilsService.validationService.REQUIRED_FIRST_NAME}}</h6>
+                <h6 *ngIf="!formSubmitService.form.controls['firstname'].hasError('required') && !formSubmitService.form.controls['firstname'].valid && formSubmitService.form.controls['firstname'].touched">{{utilsService.validationService.INVALID_FIRST_NAME}}</h6>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label>Middle Name</label>
+                <input [(ngModel)]="formSubmitService.registerUser.middleName" [formControl]="formSubmitService.form.controls['middlename']"
+                  type="text" tabindex="2" maxlength="{{utilsService.validationService.MIDDLENAME}}" class="form-control">
+                <h6 *ngIf="formSubmitService.form.controls['middlename'].hasError('required') && formSubmitService.form.controls['middlename'].touched">{{utilsService.validationService.REQUIRED_MIDDLE_NAME}}</h6>
+                <h6 *ngIf="!formSubmitService.form.controls['middlename'].hasError('required') && !formSubmitService.form.controls['middlename'].valid && formSubmitService.form.controls['middlename'].touched">{{utilsService.validationService.INVALID_MIDDLE_NAME}}</h6>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group required">
+                <label>Last Name</label>
+                <input [(ngModel)]="formSubmitService.registerUser.lastName" [formControl]="formSubmitService.form.controls['lastname']"
+                  type="text" tabindex="3" maxlength="{{utilsService.validationService.LASTNAME}}" class="form-control">
+                <h6 *ngIf="formSubmitService.form.controls['lastname'].hasError('required') && formSubmitService.form.controls['lastname'].touched">{{utilsService.validationService.REQUIRED_LAST_NAME}}</h6>
+                <h6 *ngIf="!formSubmitService.form.controls['lastname'].hasError('required') && !formSubmitService.form.controls['lastname'].valid && formSubmitService.form.controls['lastname'].touched">{{utilsService.validationService.INVALID_LAST_NAME}}</h6>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group required mt-10">
+                <label>Email</label>
+                <input maxlength="{{utilsService.validationService.EMAIL}}" [(ngModel)]="formSubmitService.registerUser.email" [formControl]="formSubmitService.form.controls['eMail']"
+                  type="email" tabindex="4" class="form-control">
+                <h6 *ngIf="formSubmitService.form.controls['eMail'].hasError('required') && formSubmitService.form.controls['eMail'].touched">{{utilsService.validationService.REQUIRED_EMAIL}}</h6>
+                <h6 *ngIf="!formSubmitService.form.controls['eMail'].hasError('required') && !formSubmitService.form.controls['eMail'].valid && formSubmitService.form.controls['eMail'].touched">{{utilsService.validationService.INVALID_EMAIL}}</h6>
+              </div>
+              <div class="form-group required mt-10">
+                <label>Password</label>
+                <input maxlength="{{utilsService.validationService.PASSWORD}}" [(ngModel)]="formSubmitService.registerUser.password"
+                  tabindex="6" [formControl]="formSubmitService.form.controls['passWord']" type="password" class="form-control">
+                <h6 *ngIf="formSubmitService.form.controls['passWord'].hasError('required') && formSubmitService.form.controls['passWord'].touched">{{utilsService.validationService.REQUIRED_PASSWORD}}</h6>
+                <h6 *ngIf="!formSubmitService.form.controls['passWord'].hasError('required') && !formSubmitService.form.controls['passWord'].valid && formSubmitService.form.controls['passWord'].touched">{{utilsService.validationService.INVALID_PASSWORD}}</h6>
+              </div>
+              <div class="form-group required mt-10">
+                <label>Mobile No.</label>
+                <input [(ngModel)]="formSubmitService.registerUser.mobileNo" [formControl]="formSubmitService.form.controls['mobileno']"
+                  tabindex="8" type="text" maxlength="{{utilsService.validationService.MOBILENO}}" class="form-control">
+                <h6 *ngIf="formSubmitService.form.controls['mobileno'].hasError('required') && formSubmitService.form.controls['mobileno'].touched">{{utilsService.validationService.REQUIRED_MOBILE_NO}}</h6>
+                <h6 *ngIf="!formSubmitService.form.controls['mobileno'].hasError('required') && !formSubmitService.form.controls['mobileno'].valid && formSubmitService.form.controls['mobileno'].touched">{{utilsService.validationService.INVALID_MOBILE_NO}}</h6>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group required mt-10">
+                <label>User Name</label>
+                <input [(ngModel)]="formSubmitService.registerUser.userName" [formControl]="formSubmitService.form.controls['username']"
+                  type="text" tabindex="5" maxlength="{{utilsService.validationService.USERNAME}}" class="form-control">
+                <h6 *ngIf="formSubmitService.form.controls['username'].hasError('required') && formSubmitService.form.controls['username'].touched">{{utilsService.validationService.REQUIRED_USER_NAME}}</h6>
+                <h6 *ngIf="!formSubmitService.form.controls['username'].hasError('required') && !formSubmitService.form.controls['username'].valid && formSubmitService.form.controls['username'].touched">{{utilsService.validationService.INVALID_USERNAME}}</h6>
+              </div>
+              <div class="form-group required mt-10">
+                <label>Confirm Password</label>
+                <input maxlength="{{utilsService.validationService.PASSWORD}}" [(ngModel)]="formSubmitService.confirmPassword" [formControl]="formSubmitService.form.controls['confirmpassword']"
+                  tabindex="7" type="password" class="form-control">
+                <h6 *ngIf="formSubmitService.form.controls['confirmpassword'].hasError('required') && formSubmitService.form.controls['confirmpassword'].touched">{{utilsService.validationService.REQUIRED_CONFIRM_PASSWORD}}</h6>
+                <h6 *ngIf="!formSubmitService.form.controls['confirmpassword'].hasError('required') && (formSubmitService.registerUser.password != formSubmitService.confirmPassword) && formSubmitService.form.controls['confirmpassword'].touched">{{utilsService.validationService.INVALID_CONFIRM_PASSOWRD}}</h6>
+              </div>
+              <div class="form-group mt-10">
+                <label>Telephone No.</label>
+                <input maxlength="{{utilsService.validationService.LANDLINENO}}" [(ngModel)]="formSubmitService.registerUser.telephoneNo"
+                  tabindex="9" [formControl]="formSubmitService.form.controls['telephoneno']" type="text" class="form-control">
+                <h6 *ngIf="!formSubmitService.form.controls['telephoneno'].hasError('required') && !formSubmitService.form.controls['telephoneno'].valid && formSubmitService.form.controls['telephoneno'].touched">{{utilsService.validationService.INVALID_TELEPHONE_NO}}</h6>
+              </div>
+            </div>
+          </div>
+
+          <!-- action button -->
+          <div class="row">
+            <div class="col-sm-12 form_footer mt-20">
+              <div class="float-right">
+                <!-- <button class="btn btn-primary" (click)="goNext(1)"> Next </button> -->
+                <button class="btn btn-primary" tabindex="10" [disabled]="(!formSubmitService.form.valid || formSubmitService.registerUser.password != formSubmitService.confirmPassword)"
+                  (click)="formSubmitService.checkData()">
+                  Create </button>
+
+                <!-- <button class="btn btn-primary"  (click)="formSubmitService.register()"> Next </button> -->
+              </div>
+            </div>
+          </div>
+          <!--End action button -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="form-group">
+          <button type="button" class="btn btn-primary btn-block" (click)="formSubmitService.checkData()"> Create Account  </button>
+      </div>      
+   -->

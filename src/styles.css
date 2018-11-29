@@ -1,0 +1,89 @@
+/* You can add global styles to this file, and also import other style files */
+/* .error-msg { border: 1px solid red !important ; 
+} */
+/* @import "~@progress/kendo-theme-default/dist/all.css"; */
+.form-group h6{ font-size: 13px; font-weight: normal; color: red !important;}
+/* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
+.mat-form-field-label {color: #555; font-weight: bold;}
+.mat-form-field-underline {
+    background-color: #ccc;
+}
+.mat-form-field {font-family: inherit;font-weight: 500;}
+
+.switch {
+    position: relative;
+    float: left;
+    width:58px;
+    height:28px;
+    margin-right:8px;
+  }
+  .switch_label {position: relative; top: 4px;}
+  .switch input {display:none;}
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius:26px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .selected-list .c-btn {box-shadow:none !important;}
+  .selected-list .c-list .c-token {
+    color: #333 !important;
+    border: 1px solid #2196F3 !important;
+    background: transparent !important;
+    padding: 3px !important;
+    display: inline-block;
+}
+.list-message {
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+  padding: 6px;
+}
+.shorting {color: #000; width: 20px; display: inline-block; text-align: center;}
+.k-header {border-color: #ced4da !important;padding: 3px 2px;width: 100%;}
+.not_availble  { text-align: center; margin-top: 15%; font-size: 25px;color: #666; }
+.time_slots li a.selected {color: #555;background: #dcdcdc;}
+.simple-notification-wrapper {z-index: 10000!important ; }
+.myclass:focus { border: none; outline: none; }
