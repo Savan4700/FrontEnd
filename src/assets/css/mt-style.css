@@ -1053,7 +1053,7 @@ a.mytooltip { font-weight: 500; color: #009efb }
 .search-listing li h3 a:hover { text-decoration: underline }
 .search-listing li a { color: #20c997 }
 .login-register { background-size: cover; background-repeat: no-repeat; background-position: center center; height: 100%; width: 100%; padding: 10% 0; position: fixed }
-.login-box { width: 400px; margin: 0 auto }
+.login-box { width: 535px; margin: 0 auto }
 .login-box .footer { width: 100%; left: 0px; right: 0px }
 .login-box .social { display: block; margin-bottom: 30px }
 #recoverform { display: none }

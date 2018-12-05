@@ -623,7 +623,7 @@ export class UtilsService {
     // user = JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE));
     // console.log(user);
     // return user ? user.isAuthenticated : false;
-    return true;
+    return false;
   }
 
   isAllowSettingForUser() {

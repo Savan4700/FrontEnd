@@ -5,8 +5,11 @@ import { SharedModule } from '../shared/shared.module';
 import { MyNavComponent } from './my-nav.component';
 import { AuthGuard } from '../Auth/Auth-guard.service';
 import { DashbaordComponent } from './dashbaord/dashbaord.component';
-import { CustomerListComponent } from './customer-list/customer-list.component';
+import { CustomerModule } from './Customer/customer.module';
 
+export function loadCustomerModule() {
+  return CustomerModule;
+}
 
 const routes: Routes = [
   { path: '', redirectTo: 'work_area', pathMatch: 'full' },
@@ -14,7 +17,7 @@ const routes: Routes = [
     path: 'work_area', component: MyNavComponent, canActivate: [AuthGuard], children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashbaordComponent },
-      { path: 'customer_list', component: CustomerListComponent }
+      { path: 'customer', loadChildren: loadCustomerModule }
 ]
 }
 ];
@@ -33,7 +36,6 @@ const routes: Routes = [
   declarations: [
       MyNavComponent,
       DashbaordComponent,
-      CustomerListComponent,
     //   ProfileComponent, StaffComponent, SubDoctorComponent, DoctorProfileComponent, TimeslotComponent, AppointmentsComponent,
     //    NewAppointmentComponent, CaseCreationComponent, ProfileRegistrationComponent, WelcomeComponent
     ]

@@ -1,0 +1,136 @@
+<div class="row page-titles">
+  <div class="col-md-5 col-8 align-self-center">
+    <!-- {{createItemService.textForAddorUpdate}} -->
+    <h3 class="text-themecolor">Create Customer</h3>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a [routerLink]="['../../view-customer']">Customer</a>
+      </li>
+      <!-- {{createItemService.textForAddorUpdate}} -->
+      <li class="breadcrumb-item active">Create Customer </li>
+    </ol>
+  </div>
+  <div class="col-md-7 col-4 align-self-center">
+    <div class="d-flex m-t-10 justify-content-end">
+      <div class="d-flex m-r-20 m-l-10 hidden-md-down">
+        <div class="chart-text m-r-10">
+          <h4 class="m-b-0">
+            <a class="text-secondary" (click)="utilsService.gotoBackPage()">
+              <i class="mdi mdi-close"></i>
+            </a>
+          </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card card-outline-info">
+      <div class="card-body">
+        <!-- <div class="alert alert-danger" *ngIf="createItemService.errors.length > 0">
+                  <button type="button" class="close" (click)="createItemService.hideErrorDiv()">&times;</button>
+                  <ul>
+                      <li *ngFor="let err of createItemService.errors">
+                          {{err}}
+                      </li>
+                  </ul>
+              </div> -->
+        <div class="form-body">
+          <div class="row label_width_fixed m-t-15">
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="control-label text-right col-md-4">
+                  First Name
+                </label>
+                <div class="col-md-8">
+                  <input [(ngModel)]="createCustomerService.registerUser.firstName" [formControl]="createCustomerService.form.controls['firstname']"
+                    type="text" tabindex="1" maxlength="{{utilsService.validationService.FIRSTNAME}}" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="control-label text-right col-md-4">
+                  Item Name
+                </label>
+                <span class="text-danger">*</span>
+                <div class="col-md-8">
+                  <input type="text" tabindex="2" class="form-control" [(ngModel)]="createItemService.newItem.name" maxlength="{{utilsService.validationService.ITEM_NAME_SIZE}}"
+                    [formControl]="createItemService.itemForm.controls['itemName']">
+                  <small class="text-danger">
+                    <h6 *ngIf="createItemService.itemForm.submitted || (createItemService.itemForm.controls['itemName'].hasError('required') &&  createItemService.itemForm.controls['itemName'].touched)">
+                      <p class="text-danger">{{utilsService.validationService.REQUIRED_FOR_ITEM_NAME}}</p>
+                    </h6>
+                  </small>
+                  <small class="text-danger">
+                    <h6 *ngIf="!createItemService.itemForm.controls['itemName'].hasError('required') && !createItemService.itemForm.controls['itemName'].valid && createItemService.itemForm.controls['itemName'].touched">
+                      <p class="text-danger"> {{utilsService.validationService.INVALID_FOR_ITEM_NAME}} </p>
+                    </h6>
+                  </small>
+                  <!-- <kendo-datepicker [value]="value" [(ngModel)]="test"></kendo-datepicker> -->
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="control-label text-right col-md-4">Unit
+                  <span class="text-danger">*</span>
+                </label>
+
+                <div class="col-md-8">
+                  <techhive-multiselect tabindex="3" [(ngModel)]="createItemService.newItem.measurementUnitId" [data]="createItemService.allUnit"
+                    [settings]="utilsService.setSettingForDropDown(true,'Unit',(createItemService.newItem.itemGroupId && !utilsService.isEmptyObject(createItemService.newItem.itemGroupId)))"
+                    [formControl]="createItemService.itemForm.controls['unitName']" (onSelect)="createItemService.selectUnit(createItemService.newItem.measurementUnitId)">
+                  </techhive-multiselect>
+                  <h6 *ngIf="createItemService.itemForm.controls['unitName'].hasError('required') &&  createItemService.itemForm.controls['unitName'].touched">
+                    <p class="text-danger"> {{utilsService.validationService.REQUIRED_FOR_UNIT_NAME}}</p>
+                  </h6>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="control-label text-right col-md-4">Opening Stock</label>
+                <div class="col-md-8">
+                  <input type="text" #openingStock class="form-control" [(ngModel)]="createItemService.newItem.openingStock" [formControl]="createItemService.itemForm.controls['openingStock']"
+                    (keypress)="utilsService.validationService.getTextboxValue(openingStock,$event.which,utilsService.validationService.OPENIG_STOCK_MAX_SIZE,0)"
+                    (ngModelChange)="utilsService.validationService.checkgetText(openingStock,utilsService.validationService.OPENIG_STOCK_MAX_SIZE,0)">
+                  <h6 *ngIf="!createItemService.itemForm.controls['openingStock'].valid && createItemService.itemForm.controls['openingStock'].touched">
+                    <span class="text-danger"> {{utilsService.validationService.INVALID_FOR_OPENING_STOCK}}</span>
+                  </h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group row">
+                <label class="control-label text-right col-md-4">Item Type</label>
+                <span class="text-danger">*</span>
+                <div class="col-md-8">
+                  <div *ngFor="let itemType of createItemService.allItemType;let i = index;">
+                    <input [(ngModel)]="createItemService.newItem.itemTypeMasterId" name="group5" type="radio" [disabled]="(createItemService.newItem.itemGroupId && !utilsService.isEmptyObject(createItemService.newItem.itemGroupId))"
+                      [value]="itemType.id" id="id{{i}}" class="with-gap radio-col-light-blue" />
+                    <label for="id{{i}}">
+                      {{itemType.name}}
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="form-actions">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-offset-3 col-md-9">
+                  <button type="submit" class="btn btn-info waves-effect" (click)="createItemService.insertItemMethod()" [disabled]="createItemService.itemForm.invalid">{{utilsService.serverVariableService.SAVE_FOR_FORM}}</button>
+                  <button type="button" class="btn btn-default waves-effect waves-light" (click)="utilsService.gotoBackPage()">
+                    {{utilsService.serverVariableService.CANCEL_FOR_FORM}}
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6"> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
