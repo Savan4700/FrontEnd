@@ -16,7 +16,7 @@ export class FormSubmitService {
   checkData() {
     console.log(this.registerUser);
     if (!this.form.valid || (this.formData.password !== this.formData.confpassword)) {
-      this.utilsService.CreateNotification('error', ' Please fill all valid details.', '');
+      // this.utilsService.CreateNotification('error', ' Please fill all valid details.', '');
       return;
     }
     // const formDatass = Serialize(this.formData, FormMaster);

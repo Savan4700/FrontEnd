@@ -31,3 +31,6 @@
 .height-inherit{
     height: -webkit-fill-available;
 }
+.regi_img {
+    max-width: 100%;
+}

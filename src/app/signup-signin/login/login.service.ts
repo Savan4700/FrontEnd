@@ -21,14 +21,14 @@ export class LoginService {
 
   checkLoginForm() {
     console.log(this.loginParamOb);
-    // this.utilsService.getMethodAPI(true, 'api/login' , this.loginParamOb, (response) => {
-    //   console.log(response);
+    this.utilsService.getMethodAPI( 'customers' , '', (response) => {
+      console.log(response);
     //   if (!this.utilsService.isNullUndefinedOrBlank(response)) {
     //     console.log('hey');
         // localStorage.setItem('users', Deserialize(JSON.stringify(response), FormMaster));
-        localStorage.setItem('users', 'resopmse');
-        this.router.navigate(['/home/work_area/dash']);
+        // localStorage.setItem('users', 'resopmse');
+        // this.router.navigate(['/home/work_area/dash']);
     //   }
-    // });
+    });
   }
 }

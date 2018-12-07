@@ -40,7 +40,8 @@ export class ServerVariableService {
   getAllHospitalMasterNameAndIdByUserIdAPI = 'getAllHospitalMasterNameAndIdByUserId';
 
   /*Get all API */
-
+  customer = "customer"
+  arrayOfapiNameToExcludeToken = [this.loginAPI,this.customer];
   getAllUserWithUserRoleAPI = 'getAllUserWithUserRole';
   getAllCountryMastersAPI = 'getAllCountryMasters';
   getAllStateMastersByCountryIdAPI = 'getAllStateMastersByCountryId';

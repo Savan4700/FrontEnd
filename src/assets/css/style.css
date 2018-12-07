@@ -34,7 +34,12 @@ ul {list-style: none; padding: 0;}
 .login_span2 {width: 50%; left:50%; bottom: 0; height: 100%;}
 .info_grp {margin-top:30px;}
 .info_grp img  {width:400px; height: auto; text-align: center;}
-.form_box {padding: 30px; width: 500px;margin: 47px 24px 375px 11px;box-shadow: 1px 1px 47px rgba(1,1,1,0.2);border-radius:15px;border-bottom: 8px solid #4AA5E7;}
+.form_box {padding: 30px;
+     /* width: 500px;
+    margin: 47px 24px 375px 11px; */
+    box-shadow: 1px 1px 47px rgba(1,1,1,0.2);
+    border-radius:15px;
+    border-bottom: 8px solid #24a03e;}
 .login_box {padding: 30px;background: #f6f8fa;  }
 label { font-weight: 500; color: #555;}
 .info_texts {margin-top:30px;}
@@ -69,7 +74,7 @@ label { font-weight: 500; color: #555;}
 
 /* step form */
 .register_bg {background: url(../img/pattern.png); background-repeat: repeat;background-color: #f8f8f8;}
-.regi_infograph {background-color: #4AA5E7; color: #fff;width: 300px;text-align: center; padding-top: 30px;}
+.regi_infograph {background-color: #24a03e ; color: #fff;width: 300px;text-align: center; padding-top: 30px;}
 .forms_regi {padding: 20px;width: 73%;}
 .mt-60 {margin-top:60px;}
 .mt-120 {margin-top:120px;}

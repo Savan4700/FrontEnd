@@ -27,11 +27,11 @@ export class AuthGuard implements CanActivate , CanDeactivate<CanComponentDeacti
                 if (this.utilsService.isAuthenticated()) {
                     return true;
                 } else {
-                    this.utilsService.logoutLink();
+                    // this.utilsService.logoutLink();
                 }
             } else {
                 if (this.utilsService.isAuthenticated()) {
-                    this.utilsService.signin();
+                    // this.utilsService.signin();
                 } else {
                     console.log('this is true');
                     return true;

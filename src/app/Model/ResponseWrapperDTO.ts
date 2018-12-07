@@ -3,32 +3,28 @@ export class ResponseWrapperDTO {
 
     @serializeAs('status')
     @deserializeAs('status')
-    private _status: boolean;
+    private _status: number;
 
-    @serializeAs('msg')
-    @deserializeAs('msg')
-    private _msg: string;
+    @serializeAs('message')
+    @deserializeAs('message')
+    private _message: string;
+
+    @serializeAs('path')
+    @deserializeAs('path')
+    private _path: string;
+
+    @serializeAs('error')
+    @deserializeAs('error')
+    private _error: string;
 
     @serializeAs('data')
     @deserializeAs('data')
     private _data: object;
 
 
-    /**
-     * Getter status
-     * @return {boolean}
-     */
-    public get status(): boolean {
-        return this._status;
-    }
-
-    /**
-     * Getter msg
-     * @return {string}
-     */
-    public get msg(): string {
-        return this._msg;
-    }
+    @serializeAs('isResponseOnPage')
+    @deserializeAs('isResponseOnPage')
+    private _isResponseOnPage: boolean;
 
     /**
      * Getter data
@@ -39,20 +35,37 @@ export class ResponseWrapperDTO {
     }
 
     /**
-     * Setter status
-     * @param {boolean} value
+     * Getter status
+     * @return {number}
      */
-    public set status(value: boolean) {
+    public get status(): number {
+        return this._status;
+    }
+
+    /**
+     * Setter status
+     * @param {number} value
+     */
+    public set status(value: number) {
         this._status = value;
     }
 
     /**
-     * Setter msg
+     * Getter message
+     * @return {string}
+     */
+    public get message(): string {
+        return this._message;
+    }
+
+    /**
+     * Setter message
      * @param {string} value
      */
-    public set msg(value: string) {
-        this._msg = value;
+    public set message(value: string) {
+        this._message = value;
     }
+
 
     /**
      * Setter data
@@ -61,5 +74,60 @@ export class ResponseWrapperDTO {
     public set data(value: object) {
         this._data = value;
     }
+
+
+    /**
+     * Getter path
+     * @return {string}
+     */
+    public get path(): string {
+        return this._path;
+    }
+
+
+    /**
+     * Setter path
+     * @param {string} value
+     */
+    public set path(value: string) {
+        this._path = value;
+    }
+
+
+    /**
+     * Getter error
+     * @return {string}
+     */
+    public get error(): string {
+        return this._error;
+    }
+
+    /**
+     * Setter error
+     * @param {string} value
+     */
+    public set error(value: string) {
+        this._error = value;
+    }
+
+
+
+    /**
+     * Getter isResponseOnPage
+     * @return {boolean}
+     */
+    public get isResponseOnPage(): boolean {
+        return this._isResponseOnPage;
+    }
+
+    /**
+     * Setter isResponseOnPage
+     * @param {boolean} value
+     */
+    public set isResponseOnPage(value: boolean) {
+        this._isResponseOnPage = value;
+    }
+
+
 
 }

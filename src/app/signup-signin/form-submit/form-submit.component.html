@@ -9,7 +9,7 @@
           </p>
         </div>
         <div class="forms_regi">
-          <h3>Create Your Account</h3>
+          <h4>Profile</h4>
           <div class="row">
             <div class="col-sm-4">
               <div class="form-group required">
@@ -38,6 +38,35 @@
                 <h6 *ngIf="!formSubmitService.form.controls['lastname'].hasError('required') && !formSubmitService.form.controls['lastname'].valid && formSubmitService.form.controls['lastname'].touched">{{utilsService.validationService.INVALID_LAST_NAME}}</h6>
               </div>
             </div>
+            
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group required ">
+                    <label>Mobile No.</label>
+                    <input [(ngModel)]="formSubmitService.registerUser.mobileNo" [formControl]="formSubmitService.form.controls['mobileno']"
+                      tabindex="8" type="text" maxlength="{{utilsService.validationService.MOBILENO}}" class="form-control">
+                    <h6 *ngIf="formSubmitService.form.controls['mobileno'].hasError('required') && formSubmitService.form.controls['mobileno'].touched">{{utilsService.validationService.REQUIRED_MOBILE_NO}}</h6>
+                    <h6 *ngIf="!formSubmitService.form.controls['mobileno'].hasError('required') && !formSubmitService.form.controls['mobileno'].valid && formSubmitService.form.controls['mobileno'].touched">{{utilsService.validationService.INVALID_MOBILE_NO}}</h6>
+                  </div>
+            </div>
+            
+            <div class="col-sm-4">
+              <div class="form-group required">
+                <label>Address</label>
+                <textarea [(ngModel)]="formSubmitService.registerUser.address" [formControl]="formSubmitService.form.controls['address']"
+                   tabindex="3" maxlength="{{utilsService.validationService.ADDRESS}}" class="form-control"></textarea>
+                <h6 *ngIf="formSubmitService.form.controls['address'].hasError('required') && formSubmitService.form.controls['address'].touched">{{utilsService.validationService.REQUIRED_ADDRESS}}</h6>
+                <h6 *ngIf="!formSubmitService.form.controls['address'].hasError('required') && !formSubmitService.form.controls['address'].valid && formSubmitService.form.controls['address'].touched">{{utilsService.validationService.INVALID_ADDRESS}}</h6>
+              </div>
+            </div>
+            
+            
+          </div>
+          <h4>Credential</h4>
+          <div class="row">
+            
             <div class="col-sm-6">
               <div class="form-group required mt-10">
                 <label>Email</label>
@@ -53,13 +82,7 @@
                 <h6 *ngIf="formSubmitService.form.controls['passWord'].hasError('required') && formSubmitService.form.controls['passWord'].touched">{{utilsService.validationService.REQUIRED_PASSWORD}}</h6>
                 <h6 *ngIf="!formSubmitService.form.controls['passWord'].hasError('required') && !formSubmitService.form.controls['passWord'].valid && formSubmitService.form.controls['passWord'].touched">{{utilsService.validationService.INVALID_PASSWORD}}</h6>
               </div>
-              <div class="form-group required mt-10">
-                <label>Mobile No.</label>
-                <input [(ngModel)]="formSubmitService.registerUser.mobileNo" [formControl]="formSubmitService.form.controls['mobileno']"
-                  tabindex="8" type="text" maxlength="{{utilsService.validationService.MOBILENO}}" class="form-control">
-                <h6 *ngIf="formSubmitService.form.controls['mobileno'].hasError('required') && formSubmitService.form.controls['mobileno'].touched">{{utilsService.validationService.REQUIRED_MOBILE_NO}}</h6>
-                <h6 *ngIf="!formSubmitService.form.controls['mobileno'].hasError('required') && !formSubmitService.form.controls['mobileno'].valid && formSubmitService.form.controls['mobileno'].touched">{{utilsService.validationService.INVALID_MOBILE_NO}}</h6>
-              </div>
+              
             </div>
             <div class="col-sm-6">
               <div class="form-group required mt-10">
@@ -76,23 +99,18 @@
                 <h6 *ngIf="formSubmitService.form.controls['confirmpassword'].hasError('required') && formSubmitService.form.controls['confirmpassword'].touched">{{utilsService.validationService.REQUIRED_CONFIRM_PASSWORD}}</h6>
                 <h6 *ngIf="!formSubmitService.form.controls['confirmpassword'].hasError('required') && (formSubmitService.registerUser.password != formSubmitService.confirmPassword) && formSubmitService.form.controls['confirmpassword'].touched">{{utilsService.validationService.INVALID_CONFIRM_PASSOWRD}}</h6>
               </div>
-              <div class="form-group mt-10">
-                <label>Telephone No.</label>
-                <input maxlength="{{utilsService.validationService.LANDLINENO}}" [(ngModel)]="formSubmitService.registerUser.telephoneNo"
-                  tabindex="9" [formControl]="formSubmitService.form.controls['telephoneno']" type="text" class="form-control">
-                <h6 *ngIf="!formSubmitService.form.controls['telephoneno'].hasError('required') && !formSubmitService.form.controls['telephoneno'].valid && formSubmitService.form.controls['telephoneno'].touched">{{utilsService.validationService.INVALID_TELEPHONE_NO}}</h6>
-              </div>
             </div>
           </div>
 
           <!-- action button -->
           <div class="row">
             <div class="col-sm-12 form_footer mt-20">
+              
               <div class="float-right">
                 <!-- <button class="btn btn-primary" (click)="goNext(1)"> Next </button> -->
-                <button class="btn btn-primary" tabindex="10" [disabled]="(!formSubmitService.form.valid || formSubmitService.registerUser.password != formSubmitService.confirmPassword)"
+                <button class="btn btn-success" tabindex="10" [disabled]="(!formSubmitService.form.valid || formSubmitService.registerUser.password != formSubmitService.confirmPassword)"
                   (click)="formSubmitService.checkData()">
-                  Create </button>
+                  Register </button>
 
                 <!-- <button class="btn btn-primary"  (click)="formSubmitService.register()"> Next </button> -->
               </div>

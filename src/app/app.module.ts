@@ -31,6 +31,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     // HttpClient,
     HttpModule,
+    
     // FroalaEditorModule.forRoot(), FroalaViewModule.forRoot()
     // HttpModule,
   ],

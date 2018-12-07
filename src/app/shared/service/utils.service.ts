@@ -1,80 +1,80 @@
-// import { SocketResponse } from './../../model/SocketResponse';
-// import { SocketInput } from './../../model/SocketInput';
-// import { ResponseErrorDTO } from './../../model/ResponseErrorDTO';
+import { isDate } from 'util';
+// import { PaginationResponse } from '../../model/PaginationResponse';
+// import { PaginationRequest } from '../../model/PaginationRequest';
 import { Deserialize, Serialize } from 'cerialize';
 import { Router } from '@angular/router';
-import { Injectable, HostListener } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ServerVariableService } from './server-variable.service';
 import { ValidationService } from './validation.service';
-// import { DatepickerOptions } from 'ng2-datepicker';
-import { Http, Headers, RequestOptions, URLSearchParams } from '@angular/http';
-import { HttpErrorResponse, HttpParams } from '@angular/common/http';
-// import { NotificationsService } from 'angular2-notifications';
-// import { Pagination } from '../../model/Pagination';
-// import { StompService } from 'ng2-stomp-service';
-import { ResponseWrapperDTO } from '../../Model/ResponseWrapperDTO';
-import { ResponseErrorDTO } from '../../Model/ResponseErrorDTO';
-import { map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
-import { FormMaster } from '../../Model/formData';
-
+import { HttpErrorResponse, HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+// import { NotificationsService } from 'angular2-notifications'; //npm install angular2-notifications
+import { ResponseWrapperDTO } from '../../model/ResponseWrapperDTO';
+import { UserMaster } from '../../Model/UserMaster'
+// import { OrganizationProfile } from '../../model/master/OrganizationProfile';
+// import { ToasterConfig, ToasterService } from 'angular2-toaster'; //npm install angular2-toaster
+import { Location } from '@angular/common';
+// import * as jsPDF from 'jspdf';
+// import 'jspdf-autotable';
 declare var $: any;
+// import * as pdfMake from 'pdfmake/build/pdfmake.js';
+// import * as pdfFonts from 'pdfmake/build/vfs_fonts.js';
+// pdfMake.vfs = pdfFonts.pdfMake.vfs;
+// import * as html2canvas from 'html2canvas';
 @Injectable()
 export class UtilsService {
-  allowURLwithoutLogin: Array<string> = ['/signup-login/login',
-  '/signup-login/forgot-password',
-  '/signup-login/doctor-registration',
-  '/signup-login/patient-registration',
-  '/signup-login/registration'];
+
+  static DEFAULT_SORT_COLUMN = 'createdDate';
+
   priviousUrl: string;
-  dateFormate = 'dd-MM-yyyy';
-  caretPos: number;
-  // datePickerOptions: DatepickerOptions = {
-  //   minYear: 1970,
-  //   maxYear: 2030,
-  //   displayFormat: 'DD/MM/YYYY',
-  //   barTitleFormat: 'MMM , YYYY',
-  //   firstCalendarDay: 0 // 0 - Sunday, 1 - Monday
-  // };
+  currentUrl: string;
+  showSettingsmenu: boolean;
+  SUCCESS_REPONSE = 'success';
+  UNAPPLICABLE = 'UNAPPLICABLE';
+  FAIL_REPONSE = 'fail';
   todayDate: Date = new Date();
   yesterdayDate: Date = new Date(new Date().getTime() - 60 * 60 * 24 * 1000);
   tommorrowDate: Date = new Date(new Date().getTime() + 60 * 60 * 24 * 1000);
   ml = 2;
 
-  SUCCESS_REPONSE = 'SUCCESS';
-  UNAPPLICABLE = 'UNAPPLICABLE';
-  FAIL_REPONSE = 'FAIL';
   USER_PROFILE_PIC_URL = '';
   // USER_PROFILE_PIC_URL = 'http://auroradiam.com:8088/clinic_management/' + this.getUserId() + '.jpg';
   /***
    * links for local PC
    */
   // URL = 'http://192.168.2.57:1337/';
-  URL = 'http://localhost:8080/springbootcrm/';
+  URL = 'http://192.168.43.47:8080/springbootcrmrest/api/';
   // SOCKET_URL = 'http://192.168.2.52:8080/clinicSocketConnections';
 
-  /**
-   * link for test1 server
-   */
-  // URL = 'http://auroradiam.com:8089/clinic_management_java/';
-  // SOCKET_URL = 'http://auroradiam.com:8089/clinic_management_java/clinicSocketConnections';
-
-
-
-  // URL = 'http://auroradiam.com:8088/clinic_management_java/'; // Server
-  // FILE_URL = 'http://auroradiam.com:8088/clinic_management/'; // Server
-
-
+ 
   ALREADY_AVAILABLE_RESULT = 'Already Available';
   INVALID_START_DATE = 'invalid start date';
   DELETE_RECORD = 'Successfully record deleted.';
-  CONFIRM_MSG_FOR_DELETE = 'Are you sure you want to delete this record?';
-  LEAVE_THIS_PAGE = 'Are you sure you want to leave this page?';
-  loaderStart: number ;
+  CONFIRM_MSG_FOR_DELETE = 'Are you sure you want to delete this record ?';
+  // CONFIRM_MSG_FOR_VALID_NET_WEIGHT = 'Are you sure you want to save this record ?';
+  LEAVE_THIS_PAGE = 'Are you sure you want to leave this page ?';
+  loaderStart = 0;
   checkGSTnumber = new RegExp('[0-9]{2}[A-Za-z]{5}[0-9]{4}[a-zA-Z][0-9]{1}[a-zA-Z]{1}[a-zA-Z0-9]{1}');
   checkForMongoId = new RegExp('^[0-9a-fA-F]{24}$');
   postMethod = 'POST';
   getMethod = 'GET';
+  msgFromDeleteAPIOnConflicts: string;
+
+
+  // doc.save('table.pdf');
+
+  // public config: ToasterConfig =
+  //   new ToasterConfig({
+  //     showCloseButton: true,
+  //     tapToDismiss: false,
+  //     timeout: 1000,
+  //     animation: 'fade out',
+  //     limit: 1,
+  //     positionClass: 'toast-top-center',
+  //     newestOnTop: true,
+  //     mouseoverTimerStop: true
+  //   });
+
+  previousUrl: string;
 
   constructor(
     public router: Router,
@@ -82,30 +82,65 @@ export class UtilsService {
     public http: HttpClient,
     public serverVariableService: ServerVariableService,
     public validationService: ValidationService,
-    // public stomp: StompService
+    // public toasterService: ToasterService,
+    public location: Location,
   ) {
-  }
-
-
-  // this funcation is used for connect socetIO
-  connectSocetIoWithSerever() {
-
-    // console.log('GO TO CONNECT');
-    // // console.log(this.stomp.status);
-    // // if (this.stomp.status != 'CONNECTED') {
-    // console.log('CONNECTED.............!');
-    // let socketInput = new SocketInput();
-    // socketInput.token = this.getToken();
-    // socketInput.status = 'login';
-    // this.stomp.send('/clinic/loginWithoutToken', Serialize(socketInput, SocketInput));
+    // Only pt supported (not mm or in)
+    // const doc = new jsPDF('p', 'pt');
+    // doc.autoTable(columns, rows, {
+    //   styles: { fillColor: [100, 255, 255] },
+    //   columnStyles: {
+    //     id: { fillColor: 255 }
+    //   },
+    //   margin: { top: 60 },
+    //   addPageContent: function (data) {
+    //     doc.text('Header', 40, 30);
+    //   }
     // });
   }
 
-  // sendSoketForLogin(socketInput) {
-  //   this.stomp.send('/clinic/' + this.serverVariableService.SEND_SOCKET_LOGIN, Serialize(socketInput, SocketInput));
+  fileSave() {
+    // const doc = new jsPDF('l', 'pt', 'a4');
+    // doc.text("From HTML", 40, 50);
+    // doc.text( 40, 50);
+    // const res = doc.autoTableHtmlToJson(document.getElementById('tableForPDF'));
+    // doc.autoTable(res.columns, res.data, {
+    //   startY: 60
+    // });
+    // return doc;
+
+    // doc.autoTable(columns, rows, {
+    //  theme: "grid",
+    //  margin: 10,
+    //  styles: {
+    //    font: "courier",
+    //    fontSize: 12,
+    //    // overflow: "linebreak",
+    //    rowHeight: 8,
+    //    cellPadding: 1,
+    //    halign: "left"
+    //  }
+    // });
+    // doc.save();
+  }
+
+
+  // downloadPdfByElementId(elementId: string) {
+  //   html2canvas(document.getElementById(elementId))
+  //     .then((canvas) => {
+  //       const data = canvas.toDataURL();
+  //       const docDefinition = {
+  //         content: [{
+  //           image: data,
+  //           fit: [520, 100000]
+  //         }]
+  //       };
+  //       pdfMake.createPdf(docDefinition).download();
+  //     })
+  //     .catch(err => {
+  //       console.log('error canvas', err);
+  //     });
   // }
-
-
   /**
    * This Method Is Use From Remove Empty Element From Array
    * @param test_array  your selected array pass as args.
@@ -125,7 +160,6 @@ export class UtilsService {
     return result;
   }
 
-
   /*
   *
   * Used to check if object ios empaty or not..!
@@ -140,7 +174,6 @@ export class UtilsService {
    * This Method Is Use For Remove Blank And Null Key From Object.
    */
   customJsonInclude(obj) {
-    const newObj: Object = new Object(obj);
     for (const key in obj) {
       if (typeof obj[key] === 'object') {
         if (obj[key] && obj[key].length > 0) {
@@ -160,114 +193,132 @@ export class UtilsService {
   }
 
   /**
-   * @author : savan-tandel
+   * @author : abhay-suchak
    * @param isDisplayToast display tost or not , pass true or false
    * @param url API name
    * @param params params
    * @param callback response of server
    */
-  postMethodAPI(isDisplayToast, url, params, callback: (response) => void) {
-    url = this.URL + url;
+  postMethodAPI(isDisplayToast, apiName, params, callback: (response: any, isRoute: boolean) => void, isToastAndDataBothRequired?: boolean) {
     this.loaderStart++;
     this.customJsonInclude(params);
-    // return this.http.post(url, params, {}).subscribe(response => {
-      return this.http.post(url, params, {}).subscribe(response => {
-      if (this.loaderStart > 0) {
-        this.loaderStart--;
-      }
-      let serverResponse = new ResponseWrapperDTO();
-      serverResponse = Deserialize(response, ResponseWrapperDTO);
-      if (serverResponse instanceof ResponseWrapperDTO === false) {
-        callback(this.FAIL_REPONSE);
-      }
-      if (serverResponse.status) {
-        callback(serverResponse.data);
-        if (isDisplayToast) {
-          if (serverResponse.status) {
-            this.CreateNotification('success', 'Success..!', serverResponse.msg);
-          } else {
-            this.CreateNotification('error', 'Error..!', serverResponse.msg);
-          }
-        }
-      } else {
-        let serverError = new ResponseErrorDTO();
-        serverError = Deserialize(response, ResponseErrorDTO);
-        if (this.isEmptyObject(serverError)) {
-          this.CreateNotification('error', 'Fail', serverResponse.msg);
-        } else {
-          this.CreateNotification('error', 'Fail', serverError.errors['error']);
-        }
+    console.log(JSON.stringify(params));
+    let headers = new HttpHeaders();
+    if (!this.serverVariableService.arrayOfapiNameToExcludeToken.includes(apiName)) {
+      headers = headers.set('Authorization', 'Bearer ' + this.getToken());
+    }
 
-        callback(serverError.data);
-      }
-    },
-      (err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-          // A client-side or network error occurred. Handle it accordingly.
-          // console.log('An error occurred:', err.error.message);
-        } else {
-          // The backend returned an unsuccessful response code.
-          // The response body may contain clues as to what went wrong,
-          console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
-          this.loaderStart--;
-          this.CreateNotification('error', 'Server down.', '');
-        }
-      }
-    );
-  }
-
-  /**
-   * @author : Savan-tandel
-   * @param isDisplayToast display tost or not , pass true or false
-   * @param url API name
-   * @param params params
-   * @param callback response of server
-   */
-  getMethodAPI(isDisplayToast, apiName, params, callback: (response) => void) {
     apiName = this.URL + apiName;
-    return this.http.get(apiName, { params: params }).subscribe(response => {
+    return this.http.post(apiName, params, { headers: headers }).subscribe(response => {
+      // console.log(response);
       // Read the result field from the JSON response.
       if (this.loaderStart > 0) {
         this.loaderStart--;
       }
-      let serverResponse = new ResponseWrapperDTO();
-      serverResponse = Deserialize(response, ResponseWrapperDTO);
-      if (serverResponse instanceof ResponseWrapperDTO === false) {
-        callback(this.FAIL_REPONSE);
-      }
-      if (serverResponse.status) {
-        callback(serverResponse.data);
-
+      const serverResponse = Deserialize(response, ResponseWrapperDTO);
+      if (!(serverResponse.status < 200 || serverResponse.status >= 300)) {
+        console.log('IF.. success response');
         if (isDisplayToast) {
-          if (serverResponse.status) {
-            this.CreateNotification('success', 'Success..!', serverResponse.msg);
-          } else {
-            this.CreateNotification('error', 'Error..!', serverResponse.msg);
-          }
+          console.log('isdisplay message');
+          // this.setConfigAndDisplayPopUpNotification('success', '', serverResponse.message);
+          // if (isToastAndDataBothRequired) {
+          //   callback(serverResponse.data, true);
+          //   return;
+          // }
+          // callback(undefined, true);
+          // callback(serverResponse.data, true);
+          // return;
         }
-      } else {
-        let serverError = new ResponseErrorDTO();
-        serverError = Deserialize(response, ResponseErrorDTO);
-        // this.URL =
-        if (this.isEmptyObject(serverError)) {
-          this.CreateNotification('error', 'Fail', serverResponse.msg);
-        } else {
-          this.CreateNotification('error', 'Fail', serverError.errors['error']);
-        }
-        callback(serverError.data);
+        console.log('serverResponse.data' + serverResponse.data);
+        // if (serverResponse.data && typeof serverResponse.data !== 'string') {
+        //   console.log('string..');
+        // }
+        callback(serverResponse.data, true);
       }
     },
       (err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-          /* A client-side or network error occurred. Handle it accordingly.
-           console.log('An error occurred:', err.error.message); */
+        console.log(`Backend returned code ${err.status}, body was: ${err.message}`);
+        if (err.status === 0) {
+          // this.CreateNotification('error', 'Error', 'Server down.');
+          // this.setConfigAndDisplayPopUpNotification('error', '', 'Server down..');
         } else {
-          // The backend returned an unsuccessful response code.
-          // The response body may contain clues as to what went wrong,
-          console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
-          this.loaderStart--;
-          this.CreateNotification('error', 'Server down.', '');
+          const errorDTO = Deserialize(err.error, ResponseWrapperDTO);
+          // if (errorDTO.message === ServerVariableService.UNAUTHORIZED_ERROR_MESSAGE) {
+            // this.homeService.logout();
+          // }
+          if (errorDTO.isResponseOnPage) {
+            callback(errorDTO.message, false);
+            window.scroll(0, 0);
+          } else {
+            // this.setConfigAndDisplayPopUpNotification('error', '', errorDTO.message ? errorDTO.message : errorDTO.error);
+          }
         }
+        this.loaderStart--;
+      }
+    );
+  }
+
+  toHttpParams(params) {
+    // console.log(params);
+    // console.log(Object.getOwnPropertyNames(params));
+    return Object.getOwnPropertyNames(params).filter(keys => {
+      console.log('key ::' + keys + 'param :: ' + params[keys]);
+      if (params[keys] === null || params[keys] === undefined) {
+        return;
+      }
+    }).reduce((p, key) =>
+      p.set(key, params[key]), new HttpParams()
+    );
+  }
+
+  /**
+   * @author : abhay-suchak
+   * @param API API name
+   * @param params params
+   * @param callback response of server
+   */
+  getMethodAPI(apiName, params, callback: (response) => void, noLoaderRequire?: boolean) {
+    this.loaderStart++;
+    if (noLoaderRequire) {
+      this.loaderStart--;
+    }
+    let httpParams = new HttpParams();
+    Object.keys(params).forEach(key => {
+      if (key && params[key] && params.hasOwnProperty(key) && !this.isEmptyObject(params[key])) {
+        httpParams = httpParams.append(key, params[key]);
+      }
+    });
+    let headers = new HttpHeaders();
+    if (!this.serverVariableService.arrayOfapiNameToExcludeToken.includes(apiName)) {
+      headers = headers.set('Authorization', 'Bearer ' + this.getToken());
+    }
+    apiName = this.URL + apiName;
+    return this.http.get(apiName, { params: httpParams, headers: headers }).subscribe(response => {
+      // Read the result field from the JSON response.
+      if (this.loaderStart > 0) {
+        this.loaderStart--;
+      }
+      const serverResponse = Deserialize(response, ResponseWrapperDTO);
+
+      if (serverResponse.status < 200 || serverResponse.status >= 300) {
+        // this.CreateNotification('error', 'Error..!', serverResponse.message);
+        // this.setConfigAndDisplayPopUpNotification('error', '', serverResponse.message);
+      } else {
+        callback(serverResponse.data);
+      }
+    },
+      (err: HttpErrorResponse) => {
+        console.log(`Backend returned code ${err.status}, body was: ${err.message}`);
+        if (err.status === 0) {
+          // this.CreateNotification('error', 'Error', 'Server down.');
+          // this.setConfigAndDisplayPopUpNotification('error', '', 'Server down..');
+        } else {
+          const errorDTO = Deserialize(err.error, ResponseWrapperDTO);
+          // this.CreateNotification('error', 'Error', errorDTO.message ? errorDTO.message : errorDTO.error);
+          // this.setConfigAndDisplayPopUpNotification('error', '', errorDTO.message ? errorDTO.message : errorDTO.error);
+          callback(errorDTO.data);
+        }
+        this.loaderStart--;
       }
     );
   }
@@ -280,203 +331,116 @@ export class UtilsService {
    * @param id
    * @param callback
    */
-  // putMethodAPI(isDisplayToast, url, params, id, callback: (response) => void) {
-  //   url = this.URL + url + '/' + id;
-  //   this.loaderStart++;
-  //   const headers = new Headers();
-  //   // let httpParams = new URLSearchParams();
-  //   // httpParams.set('id', id);
-  //   return this.http.put(url, params).map(res => res.json()).subscribe(
-  //     response => {
-  //       if (this.loaderStart > 0) {
-  //         this.loaderStart--;
-  //       }
-  //       let serverResponse = new ResponseWrapperDTO();
-  //       serverResponse = Deserialize(response, ResponseWrapperDTO);
-  //       if (serverResponse instanceof ResponseWrapperDTO === false) {
-  //         callback(this.FAIL_REPONSE);
-  //       }
-  //       if (serverResponse.status) {
-  //         callback(serverResponse.data);
+  putMethodAPI(isDisplayToast, apiName, params, id, callback: (responseData: any, isRoute: boolean) => void, isCallbackRequired?: boolean) {
 
-  //         if (isDisplayToast) {
-  //           if (serverResponse.status) {
-  //             this.CreateNotification('success', 'Success..!', serverResponse.msg);
-  //           } else {
-  //             this.CreateNotification('error', 'Error..!', serverResponse.msg);
-  //           }
-  //         }
-  //       } else {
-  //         let serverError = new ResponseErrorDTO();
-  //         serverError = Deserialize(response, ResponseErrorDTO);
-  //         // this.URL =
-  //         if (this.isEmptyObject(serverError)) {
-  //           this.CreateNotification('error', 'Fail', serverResponse.msg);
-  //         } else {
-  //           this.CreateNotification('error', 'Fail', serverError.errors['error']);
-  //         }
-  //         callback(serverError.data);
-  //       }
-  //     },
-  //     (err: HttpErrorResponse) => {
-  //       if (err.error instanceof Error) {
-  //         /* A client-side or network error occurred. Handle it accordingly.
-  //          console.log('An error occurred:', err.error.message); */
-  //       } else {
-  //         // The backend returned an unsuccessful response code.
-  //         // The response body may contain clues as to what went wrong,
-  //         console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
-  //         this.loaderStart--;
-  //         this.CreateNotification('error', 'Server down.', '');
-  //       }
-  //     }
-  //   );
-  // }
-
+    this.loaderStart++;
+    let headers = new HttpHeaders();
+    if (!this.serverVariableService.arrayOfapiNameToExcludeToken.includes(apiName)) {
+      headers = headers.set('Authorization', 'Bearer ' + this.getToken());
+    }
+    apiName = this.URL + apiName + '/' + id;
+    return this.http.put(apiName, params, { headers: headers }).subscribe(
+      response => {
+        // Read the result field from the JSON response.
+        if (this.loaderStart > 0) {
+          this.loaderStart--;
+        }
+        const serverResponse = Deserialize(response, ResponseWrapperDTO);
+        if (!(serverResponse.status < 200 || serverResponse.status >= 300)) {
+          if (isDisplayToast) {
+            // this.setConfigAndDisplayPopUpNotification('success', '', serverResponse.message);
+            callback(undefined, true);
+          }
+          if (serverResponse.data && typeof serverResponse.data !== 'string') {
+            console.log(serverResponse.data);
+            callback(serverResponse.data, true);
+          }
+        }
+      },
+      (err: HttpErrorResponse) => {
+        console.log(`Backend returned code ${err.status}, body was: ${err.message}`);
+        if (err.status === 0) {
+          // this.setConfigAndDisplayPopUpNotification('error', '', 'Server down..');
+        } else {
+          const errorDTO = Deserialize(err.error, ResponseWrapperDTO);
+          if (errorDTO.isResponseOnPage) {
+            window.scroll(0, 0);
+            callback(errorDTO.message, false);
+          } else {
+            // this.setConfigAndDisplayPopUpNotification('error', '', errorDTO.message ? errorDTO.message : errorDTO.error);
+            console.log(isCallbackRequired);
+            if (isCallbackRequired) {
+              callback(errorDTO.message, true);
+            }
+            // this.CreateNotification('error', 'Error', errorDTO.error);
+          }
+        }
+        this.loaderStart--;
+      });
+  }
   /**
-   * This Is Used For API Call.
-   * @param methodName Method Name Like , : GET , POST , DELETE :)
-   * @param url Your Selected API Name.
-   * @param params Parmas For POST method.
-   * @param callback Server Response.
-   */
-  // makeAPICall(isDisplayToast, methodName, url, params, callback: (response) => void) {
-  //   url = this.URL + url;
-  //   this.loaderStart++;
-  //   // Make the HTTP request:
-
-  //   if (methodName === this.getMethod) {
-  //     let httpParams = new URLSearchParams();
-  //     for (let key in params) {
-  //       if (key && params.hasOwnProperty(key)) {
-  //         httpParams.set(key, params[key]);
-  //       }
-  //     }
-
-  //     let options = new RequestOptions({ params: httpParams });;
-  //     console.log(this.loaderStart)
-  //     return this.http.get(url, options).map(res => res.json()).subscribe(response => {
-  //       // Read the result field from the JSON response.
-  //       if (this.loaderStart > 0) {
-  //         this.loaderStart--;
-  //       }
-  //       let serverResponse = new ResponseWrapperDTO();
-  //       serverResponse = Deserialize(response, ResponseWrapperDTO);
-  //       if (serverResponse instanceof ResponseWrapperDTO === false) {
-  //         callback(this.FAIL_REPONSE);
-  //       }
-  //       if (serverResponse.status) {
-  //         callback(serverResponse.data);
-
-  //         if (isDisplayToast) {
-  //           if (serverResponse.status) {
-  //             this.CreateNotification('success', 'Success..!', serverResponse.msg);
-  //           } else {
-  //             this.CreateNotification('error', 'Error..!', serverResponse.msg);
-  //           }
-  //         }
-  //       } else {
-  //         let serverError = new ResponseErrorDTO();
-  //         serverError = Deserialize(response, ResponseErrorDTO);
-  //         // this.URL =
-  //         if (this.isEmptyObject(serverError)) {
-  //           this.CreateNotification('error', 'Fail', serverResponse.msg);
-  //         } else {
-  //           this.CreateNotification('error', 'Fail', serverError.errors['error']);
-  //         }
-  //         callback(serverError.data);
-  //       }
-  //     },
-  //       (err: HttpErrorResponse) => {
-  //         if (err.error instanceof Error) {
-  //           /* A client-side or network error occurred. Handle it accordingly.
-  //            console.log('An error occurred:', err.error.message); */
-  //         } else {
-  //           // The backend returned an unsuccessful response code.
-  //           // The response body may contain clues as to what went wrong,
-  //           console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
-  //           this.loaderStart--;
-  //           this.CreateNotification('error', 'Server down.', '');
-  //         }
-  //       }
-  //     );
-  //   } else if (methodName === this.postMethod) {
-  //     this.customJsonInclude(params);
-  //     return this.http.post(url, params, {
-  //       // params: new HttpParams().set('id', '3'),
-  //     }).map(res => res.json()).subscribe(response => {
-  //       if (this.loaderStart > 0) {
-  //         this.loaderStart--;
-  //       }
-  //       let serverResponse = new ResponseWrapperDTO();
-  //       serverResponse = Deserialize(response, ResponseWrapperDTO);
-  //       if (serverResponse instanceof ResponseWrapperDTO === false) {
-  //         callback(this.FAIL_REPONSE);
-  //       }
-  //       if (serverResponse.status) {
-  //         callback(serverResponse.data);
-  //         if (isDisplayToast) {
-  //           if (serverResponse.status) {
-  //             this.CreateNotification('success', 'Success..!', serverResponse.msg);
-  //           } else {
-  //             this.CreateNotification('error', 'Error..!', serverResponse.msg);
-  //           }
-  //         }
-  //       } else {
-  //         let serverError = new ResponseErrorDTO();
-  //         serverError = Deserialize(response, ResponseErrorDTO);
-  //         if (this.isEmptyObject(serverError)) {
-  //           this.CreateNotification('error', 'Fail', serverResponse.msg);
-  //         } else {
-  //           this.CreateNotification('error', 'Fail', serverError.errors['error']);
-  //         }
-  //         callback(serverError.data);
-  //       }
-  //     },
-  //       (err: HttpErrorResponse) => {
-  //         if (err.error instanceof Error) {
-  //           // A client-side or network error occurred. Handle it accordingly.
-  //           // console.log('An error occurred:', err.error.message);
-  //         } else {
-  //           // The backend returned an unsuccessful response code.
-  //           // The response body may contain clues as to what went wrong,
-  //           console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
-  //         }
-  //       }
-  //     );
-  //   }
-  // }
-
-  /**
-   * @author
-   * @param methodName
+   * @author : abhay-suchak
+   * @param isDisplayToast
    * @param url
    * @param params
+   * @param id
    * @param callback
    */
-  // makeAPICallForFileUpload(methodName, url, params, callback: (response) => void) {
+  deleteMethodAPI(isDisplayToast, apiName, ob, callback: (response: any, isRoute: boolean) => void) {
+    let headers = new HttpHeaders();
+    if (!this.serverVariableService.arrayOfapiNameToExcludeToken.includes(apiName)) {
+      headers = headers.set('Authorization', 'Bearer ' + this.getToken());
+    }
+    apiName = this.URL + apiName;
+    console.log(JSON.stringify(ob));
+    Object.keys(ob).forEach(key => {
+      if (key && ob[key] && ob.hasOwnProperty(key) && !this.isEmptyObject(ob[key])) {
+        console.log('value ::' + ob[key]);
+        apiName += '/' + ob[key];
+        console.log('API  ::' + apiName);
+      }
+    });
+    return this.http.delete(apiName, { headers: headers }).subscribe(
+      response => {
+        // Read the result field from the JSON response.
+        if (this.loaderStart > 0) {
+          this.loaderStart--;
+        }
 
-  //   url = this.URL + url;
-  //   const headers = new Headers();
-  //   const options = new RequestOptions({ headers: headers });
-  //   /* API call using Post Method.*/
-  //   if (methodName === this.postMethod) {
-  //     return this.http.post(url, params, options).map(res => res.json()).subscribe(
-  //       response => {
-  //         callback(response);
-  //       },
-  //       error => {
-  //         // this.error = error;
-  //       }
-  //     );
-  //   }
-
-    /* API call using Get Method.*/
-  //   if (methodName === this.getMethod) {
-  //     // return this.http.get(this.endpoint_url).map(res => res.json());
-  //   }
-  // }
-
+        const serverResponse = Deserialize(response, ResponseWrapperDTO);
+        if (!(serverResponse.status < 200 || serverResponse.status >= 300)) {
+          if (isDisplayToast) {
+            // this.setConfigAndDisplayPopUpNotification('success', '', serverResponse.message);
+            // this.CreateNotification('success', 'Success..!', serverResponse.message);
+            callback(undefined, true);
+          }
+          if (serverResponse.data && typeof serverResponse.data !== 'string') {
+            callback(serverResponse.data, true);
+          }
+        }
+      },
+      (err: HttpErrorResponse) => {
+        console.log(`Backend returned code ${err.status}, body was: ${err.message}`);
+        if (err.status === 0) {
+          // this.CreateNotification('error', 'Error', 'Server down.');
+          // this.setConfigAndDisplayPopUpNotification('error', '', 'Server down..');
+        } else {
+          const errorDTO = Deserialize(err.error, ResponseWrapperDTO);
+          if (!errorDTO.isResponseOnPage) {
+            // callback(errorDTO.message, false);
+            this.msgFromDeleteAPIOnConflicts = errorDTO.message;
+            $('#deletConflicts').modal({
+              backdrop: 'static',
+              keyboard: false
+            });
+          } else {
+            // this.CreateNotification('error', 'Error', errorDTO.error);
+            // this.setConfigAndDisplayPopUpNotification('error', '', errorDTO.error ? errorDTO.error : errorDTO.message);
+          }
+        }
+        this.loaderStart--;
+      });
+  }
 
   /**
   * This method is used to check all checkbox of list if isCheckAll is true, otherwise it uncheck all checkboxes of list.
@@ -484,11 +448,13 @@ export class UtilsService {
   * @param detailsArray : indicates list that contains checkboxes.
   */
   checkAll(isCheckAll, detailsArray) {
-    // for (const i in detailsArray){
-    //   console.log(detailsArray[i][isCheckAll]);
-    //   detailsArray[i][isCheckAll] = isCheckAll;
-    // }
+    detailsArray.forEach(ele => {
+      // if (ele.hasOwnProperty('selected')) {
+      ele.selected = isCheckAll;
+      // }
+    });
     return isCheckAll;
+    // return detailsArray;
   }
   /***
    * This method is used to make isCheckAll true if all checkboxes of list is checked, otherwise it makes isCheckAll to false;
@@ -519,57 +485,53 @@ export class UtilsService {
   capitalizeFirstLetter(string) {
     return string.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
   }
+
+
+  // setConfigAndDisplayPopUpNotification(type, title, message) {
+  //   this.config.timeout = 0;
+  //   if (type === 'success') {
+  //     this.config.timeout = 2000;
+  //   }
+  //   this.toasterService.pop(type, title, message);
+  // }
+
   /**
    * This Method Is Used To Generate Notification.
    * @param type which Type Of Notification You Used.
    * @param message Message - Display As '..BIG FONT...'.
    * @param content Message - Display As '..SMALL FONT...'.
    */
-  CreateNotification(type, message, content) {
-    let timeOut = 0;
-    if (type === 'success') {
-      timeOut = 5000;
-    }
-    // this._service.create(
-    //   message,
-    //   content,
-    //   type,
+  // CreateNotification(type, message, content) {
+  //   let timeOut = 0;
+  //   if (type === 'success') {
+  //     timeOut = 5000;
+  //   }
+  //   this._service.create(
+  //     message,
+  //     content,
+  //     type,
+  //     {
+  //       timeOut: timeOut,
+  //       showProgressBar: true,
+  //       pauseOnHover: true,
+  //       clickToClose: true,
+  //       maxLength: 1000
 
-    //   {
-    //     timeOut: timeOut,
-    //     showProgressBar: true,
-    //     pauseOnHover: true,
-    //     clickToClose: true,
-    //     maxLength: 1000
+  //     }
+  //   );
+  // }
 
-    //   }
-    // );
-  }
-
-  resetAllNotification() {
-    // this._service.remove();
-  }
+  // resetAllNotification() {
+  //   this._service.remove();
+  // }
 
   getMenu() {
     return JSON.parse(localStorage.getItem('userMenus'));
   }
 
 
-  getDropdownArrayUtilsFunction(arrayOfTableName, callback: (response) => void) {
-    // const params = {
-    //   'jsonOfObject': arrayOfTableName
-    // };
-    // this.postMethodAPI(false, this.serverVariableService.getDetailsForAngularDropDownAPI, params, (response) => {
-    //   if (response !== this.FAIL_REPONSE) {
-    //     callback(response);
-    //   } else {
-    //     callback([]);
-    //   }
-    // });
-  }
-
   isNullUndefinedOrBlank(obj) {
-    if (obj === null || obj === undefined || (obj === '' && obj !== 0)) {
+    if (obj == null || obj === undefined || (obj === '' && obj !== 0)) {
       return true;
     }
     return false;
@@ -577,37 +539,71 @@ export class UtilsService {
 
   getUserName() {
 
-    // let user = new User();
-    // user = JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE));
-    // if (this.isEmptyObject(user)) {
-    //   return;
-    // }
-    // user = Deserialize(user, User);
-    // return user ? user.userName.toString() : null;
+    let user = new UserMaster();
+    user = JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE));
+    if (this.isEmptyObject(user)) {
+      return;
+    }
+    user = Deserialize(user, UserMaster);
+    return user ? user.userName.toString() : null;
   }
+
+  // getOrganizationId() {
+  //   let user = new UserMaster();
+  //   user = JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE));
+  //   if (this.isEmptyObject(user)) {
+  //     return;
+  //   }
+  //   const org = Deserialize(user.organizationProfile, OrganizationProfile);
+  //   return org ? org.id : null;
+  // }
+  // getOrganizationName() {
+  //   let user = new UserMaster();
+  //   user = JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE));
+  //   if (this.isEmptyObject(user)) {
+  //     return;
+  //   }
+  //   const org: OrganizationProfile = Deserialize(user.organizationProfile, OrganizationProfile);
+  //   return org ? org.name : null;
+  // }
+
+  // getOrganizationCountryId() {
+  //   let user = new UserMaster();
+  //   user = JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE));
+  //   if (this.isEmptyObject(user)) {
+  //     return;
+  //   }
+  //   const org = Deserialize(user.organizationProfile, OrganizationProfile);
+  //   return org.idOfCountryMaster ? org.idOfCountryMaster : null;
+  // }
+
+  // getOrganizationStateId() {
+  //   let user = new UserMaster();
+  //   user = JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE));
+  //   if (this.isEmptyObject(user)) {
+  //     return;
+  //   }
+  //   const org = Deserialize(user.organizationProfile, OrganizationProfile);
+  //   return org.idOfStateMaster ? org.idOfStateMaster : null;
+  // }
 
   getUserFromLocalStorage() {
     if (this.isEmptyObject(JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE)))) {
       return null;
     }
-    // return Deserialize(JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE)), User);
+    return Deserialize(JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE)), UserMaster);
   }
 
   getUserId() {
     if (this.isEmptyObject(JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE)))) {
       return null;
     }
-    // let user = new User();
-    // user = Deserialize(JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE)), User);
-    // return user ? user.id : null;
+    let user = new UserMaster();
+    user = Deserialize(JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE)), UserMaster);
+    return user ? user.id : null;
   }
-  getUserRegistraionStep() {
-    if (this.isEmptyObject(JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE)))) {
-      return null;
-    }
-    // let user = new User();
-    // user = Deserialize(JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE)), User);
-    // return user ? user.registrationStep : 0;
+  isAuthenticated() {
+    return localStorage.getItem('isAuthenticate') ? localStorage.getItem('isAuthenticate') : null;
   }
   getToken() {
     return localStorage.getItem('token') ? localStorage.getItem('token') : null;
@@ -615,154 +611,68 @@ export class UtilsService {
   getClientToken() {
     return localStorage.getItem('clientToken') ? localStorage.getItem('clientToken') : null;
   }
-  isAuthenticated() {
-    // if (this.isEmptyObject(JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE)))) {
-    //   return null;
-    // }
-    // let user = new FormMaster();
-    // user = JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE));
-    // console.log(user);
-    // return user ? user.isAuthenticated : false;
-    return false;
-  }
 
-  isAllowSettingForUser() {
-    if (this.isEmptyObject(JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE)))) {
-      return null;
-    }
-    // let user = new User();
-    // user = Deserialize(JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE)), User);
-
-    // if (user && !this.isEmptyObject(user.mapOfOtherDetails)) {
-    //   return user.mapOfOtherDetails['isAllowSettingMenu']
-    // }
-    return false;
-  }
-  getStateMasterId() {
-    if (this.isEmptyObject(JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE)))) {
-      return null;
-    }
-    // let user = new User();
-    // user = Deserialize(JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE)), User);
-
-    // if (user && !this.isEmptyObject(user.mapOfOtherDetails)) {
-    //   return user.mapOfOtherDetails['idOfStateMaster']
-    // }
-    return false;
-  }
-  getCityMasterId() {
-    if (this.isEmptyObject(JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE)))) {
-      return null;
-    }
-    // let user = new User();
-    // user = Deserialize(JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE)), User);
-
-    // if (user && !this.isEmptyObject(user.mapOfOtherDetails)) {
-    //   return user.mapOfOtherDetails['idOfCityMaster']
-    // }
-    return false;
-  }
 
   // .......... Start Pagination Related Methods ...............
 
-  public getPreviousData(pagination) {
-    pagination.startPos -= +pagination.perPage;
-    pagination.selectPage = pagination.startPos.toString();
-  }
-  public getNextData(pagination) {
-    pagination.startPos += +pagination.perPage;
-    pagination.selectPage = pagination.startPos.toString();
-  }
+  // public getPreviousData(pagination: PaginationRequest) {
+  //   pagination.pageNumber = (+(pagination.pageNumber) - 1).toString();
+  // }
+  // public getNextData(pagination: PaginationRequest) {
+  //   pagination.pageNumber = (+(pagination.pageNumber) + 1).toString();
+  // }
 
-  public goToPageFun(pagination) {
-    pagination.startPos = +pagination.selectPage;
-  }
+  // public changeNoOfRecord(pagination: PaginationRequest) {
+  //   pagination.pageNumber = String(1);
+  // }
 
-  public setPaginationVariablesBeforeAPICall(pagination) {
-    if (pagination.startPos < 0) {
-      pagination.startPos = 0;
-    }
-
-    pagination.noOfRecordsPerPage = Number(pagination.perPage);
-    pagination.lastAchive = false;
-  }
-
-  public setPaginationVariablesAfterAPICall(pagination, Response) {
-    if (Response.length === 0) {
-      pagination.totalRecords = 0;
-    }
-
-    if (Response.length > 0 && Response[0].totalNoOfRecords) {
-      pagination.totalRecords = Response[0].totalNoOfRecords;
-    }
-    if ((pagination.totalRecords <= (pagination.startPos + +pagination.perPage))) {
-      pagination.lastAchive = true;
-    }
-    pagination.selectPage = pagination.startPos.toString();
-    pagination.goToPageArray = this.fillgoToPageDropDownArray(pagination.totalRecords, pagination.perPage);
-  }
-
-  // public setSortByKeyAndOrder(pagination: Pagination, key: string) {
-  //   // pagination.classNamesForUpDown = {};
+  // public setSortByKeyAndOrder(pagination: PaginationRequest, key: string) {
   //   let className = '';
   //   if (pagination.sortColumn && pagination.sortColumn === key) {
   //     if (pagination.sortOrder === 'a') {
-  //       pagination.sortOrder = 'd'
-  //       className = 'fa fa-sort-down';
+  //       pagination.sortOrder = 'd';
+  //       className = 'shorting ti-arrow-up';
   //     } else {
   //       pagination.sortOrder = 'a';
-  //       className = 'fa fa-sort-up';
+  //       className = 'shorting ti-arrow-down';
   //     }
   //   } else {
   //     pagination.sortColumn = key;
   //     pagination.sortOrder = 'a';
-  //     className = 'fa fa-sort-up';
+  //     className = 'shorting ti-arrow-down';
   //   }
   //   pagination.classForUpDown = className;
-  //   console.log(pagination.classNamesForUpDown)
   // }
 
+  // setPaginationSetting(pagination: PaginationResponse) {
+  //   if (pagination) {
+  //     pagination.startPos = +pagination.pageable['offset'] + 1;
+  //     pagination.endPos = +pagination.pageable['offset'] + +pagination.size;
+  //     if (pagination.totalPages) {
+  //       for (let i = 1; i <= pagination.totalPages; i++) {
+  //         pagination.pageArray.push(
+  //           {
+  //             'id': i.toString(),
+  //             'name': 'Page ' + i
+  //           }
+  //         );
+  //       }
+  //     }
+  //   }
+  //   return pagination;
+  // }
 
-
-  public getQueryString(ob) {
-    // var i = 0;
-    // var param: string = '';
-    // for (let key in ob) {
-    //   if (ob[key]) {
-    //     param += ((i === 0) ? '?' : '&') + key + '=' + ob[key];
-    //     i++;
-    //   }
-    // }
-    // return (param) ? param : undefined;
-  }
-  public selectPerPage(pagination) {
-    pagination.startPos = 0;
-    pagination.selectPage = pagination.startPos.toString();
-  }
-
-  public searchStoneByButton(pagination) {
-    pagination.startPos = 0;
-    pagination.selectPage = pagination.startPos.toString();
-  }
-
-  public fillgoToPageDropDownArray(totalNoOfRecords, recordsPerPage) {
-    const count = Math.ceil(totalNoOfRecords / +recordsPerPage);
-    let idPerPage = 0;
-    if (count > 0) {
-      const goToPageArray = [];
-      for (let i = 1; i <= count; i++) {
-        goToPageArray.push({
-          'name': 'Page ' + i,
-          'id': idPerPage.toString()
-        });
-        idPerPage += +recordsPerPage;
-      }
-      return goToPageArray;
-    }
-  }
+  // setPaginationOnDeleteAndUpdateRecords(last: boolean, numberOfElements: number, paginationRequest: PaginationRequest) {
+  //   if (last && numberOfElements === 1) {
+  //     paginationRequest.pageNumber = '1';
+  //   }
+  //   return paginationRequest;
+  // }
   // .......... End Pagination Related Methods ...............
-  redirectTo(route) {
-    this.router.navigate([route]);
+
+  redirectTo(...route) {
+    // console.log(route);
+    this.router.navigate(route);
   }
 
   ConvertModelIdToString(arrayOfKeys, array) {
@@ -787,110 +697,15 @@ export class UtilsService {
     return newArray;
   }
 
-  getTextboxValue(getText, eventKeyCode, maximum, decimalPoint) {
-    const name = getText.value;
-    let setLength;
-    let setLen;
-    if (name.indexOf('-') !== -1) {
-      setLength = maximum + 1;
-    } else {
-      if (getText.selectionStart || getText.selectionStart === '0') {
-        this.caretPos = getText.selectionStart;
-        if (this.caretPos === 0 && name.indexOf('-') === -1 && eventKeyCode === 45) {
-          setLength = maximum + 1;
-        } else {
-          setLength = maximum;
-        }
-      }
-    }
-    const decimal = decimalPoint + 1;
-    if (eventKeyCode === 46) {
-      if (name.indexOf('.') === -1) {
-        getText.maxLength = name.length + decimal;
-      } else {
-        getText.maxLength = setLength;
-        if (setLength !== name.length) {
-          getText.maxLength = name.length;
-        }
-      }
-    } else {
-      if (name.indexOf('.') === -1) {
-        getText.maxLength = setLength;
-      } else {
-        const lengthOfFristIndex = name.split('.')[0].length;
-        const lengthOfLatsIndex = name.split('.')[1].length;
-        getText.maxLength = setLength;
-        getText.maxLength = lengthOfFristIndex + decimal;
-        if (getText.selectionStart || getText.selectionStart === '0') {
-          this.caretPos = getText.selectionStart;
-          if (this.caretPos <= lengthOfFristIndex && lengthOfFristIndex <= setLength) {
-            if (lengthOfFristIndex === setLength) {
-              setLen = lengthOfFristIndex + lengthOfLatsIndex + 1;
-              getText.maxLength = setLen;
-            } else {
-              setLen = (name.length - 1) + (setLength - lengthOfFristIndex) + (decimal - lengthOfLatsIndex);
-              getText.maxLength = setLen;
-            }
-          }
-        }
-      }
-    }
-  }
 
-  checkgetText(textValue, maxLength, decimalPoint) {
-    // let getText;
-    // getText = textValue.value;
-    // getText && getText.indexOf('-') !== -1 ? maxLength = maxLength + 1 : '';
-    // getText && getText.indexOf('.') !== -1 &&
-    // getText.split('.')[1].length > decimalPoint ? textValue.value = getText.slice(0, getText.indexOf('.') + 1 + decimalPoint) : '';
-    // getText && getText.indexOf('.') === -1 && getText.length > maxLength ? textValue.value = getText.slice(0, maxLength) : '' ;
-    // if (getText && getText.split('.')[0].length === 0 && getText.split('.')[1].length !== 0) {
-    //   textValue.value = (0 + getText);
-    // }
-  }
 
-  /**
-  * check is string is mongoId or Not
-  * return true if mongoID
-  */
-  isMongoId(checkId) {
-    return this.checkForMongoId.test(checkId);
-  }
 
-  logoutLink() {
-    this.router.navigate(['/signup-login/signup/login']);
-
-  }
-  logout() {
-    // let socketInput = new SocketInput();
-    // socketInput.token = this.getClientToken();
-    // this.stomp.send('/clinic/' + this.serverVariableService.SEND_SOCKET_LOGOUT, Serialize(socketInput, SocketInput));
-    // localStorage.removeItem('userMenus');
-    localStorage.removeItem('users');
-    // localStorage.removeItem('token');
-    // this.router.navigate(['/signup-login/signup/login']);
-  }
-  signin() {
-    this.router.navigate(['/home/work_area/dash']);
-  }
 
   checkPatternRegularExp(pattern, string) {
     const regex1 = RegExp(pattern);
     return regex1.test(string);
   }
 
-
-
-  // paymentModeArray = [
-  //   {
-  //     id: 'Cash',
-  //     name: 'Cash'
-  //   },
-  //   {
-  //     id: 'Credit Card',
-  //     name: 'Credit Card'
-  //   }
-  // ];
 
   /**
    * @author:Abhay-Suchak
@@ -906,23 +721,6 @@ export class UtilsService {
   }
 
   /**
-   * @author:Abhay-Suchak
-   * Redirect After Login
-   */
-  forRedirectAfterLogin() {
-    if (this.getUserRegistraionStep() === 3) {
-      this.resetAllNotification();
-      this.redirectTo('/home');
-    } else if (this.getUserRegistraionStep() === 2) {
-      // this.doctorRegistrationService.getDropdownArray();
-      this.redirectTo('/signup-login/doctor-registration');
-    } else if (this.getUserRegistraionStep() === 1) {
-      // this.doctorRegistrationService.getAllState();
-      this.redirectTo('/signup-login/doctor-registration');
-    }
-  }
-
-  /**
    * @author Abhay-Suchak
    * @param x staring which you want to trim
    */
@@ -930,22 +728,129 @@ export class UtilsService {
     return x.replace(/^\s+|\s+$/gm, '');
   }
 
-  callByReferenceArray(array) {
-    console.log(array);
-
-    array.forEach((element, index) => {
-      element.name = 'MP : ' + index;
-    });
-  }
-
   /**
-   * this function is used to set PROFILE PIC URL.
-   * @author Abhay-Suchak
-   * @param url base 64 URL
-   */
-  setProfilePicUrl(url) {
-    this.USER_PROFILE_PIC_URL = url;
+* Setting OF Techhive multiselect
+* @param singleSelection // this parmas is define dropdown Allow Single Or Multiple.
+* @param NameOfPlaceHolder // this params is define placeholder of dropdown.
+* @param isDisabled // pass TRUE or FALSE for Disabled Dropdowm.
+* @param isAllowClear // pass FALSE if You Don't Want To  CLEAR SELCTION Of Dropdown.
+*/
+  setSettingForDropDown(singleSelection, NameOfPlaceHolder, isDisabled?: boolean, isAllowClear?: boolean) {
+    return {
+      singleSelection: singleSelection,
+      text: 'Select ' + NameOfPlaceHolder,
+      selectAllText: 'Select All ' + NameOfPlaceHolder,
+      unSelectAllText: 'UnSelect All ' + NameOfPlaceHolder,
+      enableSearchFilter: true,
+      classes: 'myclass custom-class',
+      maxHeight: '100px',
+      disabled: isDisabled,
+      showCheckbox: singleSelection ? false : true
+      // allowClear: isAllowClear
+    };
   }
 
+  /* parent-child drop down setting */
+  setSettingForDropDownParentChild(singleSelection, NameOfPlaceHolder, groupBy?: string) {
+    return {
+      singleSelection: singleSelection,
+      text: 'Select ' + NameOfPlaceHolder,
+      selectAllText: 'Select All ' + NameOfPlaceHolder,
+      unSelectAllText: 'UnSelect All ' + NameOfPlaceHolder,
+      enableSearchFilter: true,
+      classes: 'myclass custom-class',
+      maxHeight: '100px',
+      groupBy: groupBy,
+      showCheckbox: singleSelection ? false : true
+    };
+  }
+
+  public loadScript(url: string) {
+    const body = <HTMLDivElement>document.body;
+    const script = document.createElement('script');
+    script.innerHTML = '';
+    script.src = url;
+    script.async = false;
+    script.defer = true;
+    body.appendChild(script);
+  }
+  setDropdownSettingForLazzyDropdown(singleSelection, NameOfPlaceHolder, isDisabled?: boolean, isAllowClear?: boolean, groupbyString?: string) {
+    return {
+      singleSelection: singleSelection,
+      text: 'Select ' + NameOfPlaceHolder,
+      selectAllText: 'Select All ' + NameOfPlaceHolder,
+      unSelectAllText: 'UnSelect All ' + NameOfPlaceHolder,
+      enableSearchFilter: true,
+      classes: 'myclass custom-class',
+      maxHeight: '100px',
+      disabled: isDisabled,
+      allowClear: (isAllowClear ? isAllowClear : true),
+      lazzyLoading: true,
+      groupBy: groupbyString,
+      badgeShowLimit: 3,
+      showCheckbox: singleSelection ? false : true
+    };
+  }
+  setSettingForLocalStorage(params) {
+    localStorage.setItem('settingMenu', params);
+  }
+  getSettingForLocalStorage() {
+    return localStorage.getItem('settingMenu');
+  }
+
+  gotoBackPage() {
+    this.location.back();
+  }
+
+  appendCurrentTimeToDate(dateObj) {
+    const date = new Date();
+    if (isDate(dateObj)) {
+      dateObj.setHours(date.getHours());
+      dateObj.setMinutes(date.getMinutes());
+      dateObj.setSeconds(date.getSeconds());
+      return dateObj;
+    }
+    return dateObj;
+  }
+  setDecimalPointValue(number: number): number {
+    return +number.toFixed(2);
+  }
+  isEmptyObjectOrNullUndefiend(...value) {
+    if (value && value.length > 0) {
+      for (let i = 0; i < value.length; i++) {
+        if (this.isNullUndefinedOrBlank(value[i]) || this.isEmptyObject(value[i])) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+
+  removeDublicateSpaceFromString(str?: string) {
+    return str.replace(/\s+/g, ' ');
+  }
+
+  setZeroBeforeNumericValue(num: string, size?: number): string {
+    if (!size) {
+      size = 4;
+    }
+    let s = num + '';
+    while (s.length < size) {
+      s = '0' + s;
+    }
+    return s;
+  }
+
+  isSuccessGetMethodResponse(response) {
+    if (!this.isNullUndefinedOrBlank(response) && response !== this.FAIL_REPONSE) {
+      return true;
+    }
+    return false;
+  }
+
+  isNumber(value: string | number): boolean {
+    return !isNaN(Number(value.toString()));
+  }
 
 }

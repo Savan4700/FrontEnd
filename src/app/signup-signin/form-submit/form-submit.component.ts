@@ -33,6 +33,7 @@ export class FormSubmitComponent implements OnInit {
       'username': [null, Validators.compose([Validators.required, Validators.pattern(this.utilsService.validationService.PATTERN_FOR_ALPHABATES_AND_DIGIT)])],
       'confirmpassword': [null, Validators.compose([Validators.required])],
       'telephoneno': [null, Validators.compose([Validators.pattern(this.utilsService.validationService.PATTERN_FOR_PHONE_NO)])],
+      'address': [null, Validators.compose([Validators.pattern(this.utilsService.validationService.ONLY_SPACE_NOT_ALLOW)])],
     });
   }
   
