@@ -17,6 +17,7 @@ export class LoginService {
       username: "",
       password: ""
     };
+    errorCheck:boolean =false;
   form: FormGroup;
   constructor(public utilsService: UtilsService, public router: Router) { }
 
@@ -24,12 +25,15 @@ export class LoginService {
     console.log(this.loginParamOb);
     this.utilsService.postMethodAPI(true, 'auth/signin', this.loginParamOb, (response) => {
       console.log(response);
-      if (!this.utilsService.isNullUndefinedOrBlank(response)) {
+      if (!this.utilsService.isNullUndefinedOrBlank(response.accessToken)) {
+        this.errorCheck = false;
         this.setLocalStorage(response).then(() => {
           this.utilsService.redirectTo('/home/work_area/dashboard');
           // this.stompWebsocketService.sendLoginMsg(JSON.stringify({ 'sendUserName': 'test', 'msg': 'login Message' }));
         }
         );
+      }else{
+        this.errorCheck = true;
       }
     });
   }
