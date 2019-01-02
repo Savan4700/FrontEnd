@@ -5,30 +5,46 @@ import { serialize } from '../../../../node_modules/cerialize';
 import { Serialize, Deserialize } from 'cerialize';
 import { Router } from '../../../../node_modules/@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { User } from '../../Model/User';
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
   loginParamOb: {
-        email: string,
-        password: string,
-        } = {
-        email: '',
-        password: ''
-      };
-      form: FormGroup;
+    username: string,
+    password: string,
+  } = {
+      username: "",
+      password: ""
+    };
+  form: FormGroup;
   constructor(public utilsService: UtilsService, public router: Router) { }
 
   checkLoginForm() {
     console.log(this.loginParamOb);
-    this.utilsService.getMethodAPI( 'customers' , '', (response) => {
+    this.utilsService.postMethodAPI(true, 'auth/signin', this.loginParamOb, (response) => {
       console.log(response);
-    //   if (!this.utilsService.isNullUndefinedOrBlank(response)) {
-    //     console.log('hey');
-        // localStorage.setItem('users', Deserialize(JSON.stringify(response), FormMaster));
-        // localStorage.setItem('users', 'resopmse');
-        // this.router.navigate(['/home/work_area/dash']);
-    //   }
+      if (!this.utilsService.isNullUndefinedOrBlank(response)) {
+        this.setLocalStorage(response).then(() => {
+          this.utilsService.redirectTo('/home/work_area/dashboard');
+          // this.stompWebsocketService.sendLoginMsg(JSON.stringify({ 'sendUserName': 'test', 'msg': 'login Message' }));
+        }
+        );
+      }
     });
   }
+
+  setLocalStorage(res) {
+    const promise = new Promise((resolve, reject) => {
+        try {
+            localStorage.setItem('users', Deserialize(JSON.stringify(res.userDetails), User));
+            localStorage.setItem('token', res.accessToken);
+            localStorage.setItem('isAuthenticate', 'true');
+            resolve();
+        } catch (error) {
+            reject();
+        }
+    });
+    return promise;
+}
 }

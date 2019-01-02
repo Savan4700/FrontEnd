@@ -26,18 +26,11 @@ const routes: Routes = [
   imports: [
     SharedModule,
     RouterModule.forChild(routes),
-    // MatGridListModule,
-    // MatCardModule,
-    // MatMenuModule,
-    // MatIconModule,
-    // MatButtonModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
       MyNavComponent,
       DashbaordComponent,
-    //   ProfileComponent, StaffComponent, SubDoctorComponent, DoctorProfileComponent, TimeslotComponent, AppointmentsComponent,
-    //    NewAppointmentComponent, CaseCreationComponent, ProfileRegistrationComponent, WelcomeComponent
     ]
 })
 export class MyNavModule {

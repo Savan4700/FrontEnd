@@ -6,7 +6,7 @@
                     <div class="form-group ">
                         <div class="col-xs-12">
                             <input class="form-control" type="text" tabindex="1" placeholder="Username" maxlength="{{utilsService.validationService.MAX_50}}"
-                                [(ngModel)]="loginService.loginParamOb.email" [formControl]="loginService.form.controls['username']">
+                                [(ngModel)]="loginService.loginParamOb.username" [formControl]="loginService.form.controls['username']">
                             <small class="text-danger">
                                 <h6 *ngIf="(loginService.form.controls['username'].hasError('required') || !loginService.form.controls['username'].valid) && loginService.form.controls['username'].touched">
                                     {{utilsService.validationService.USERNAME_OR_EMAIL}}
@@ -17,10 +17,10 @@
                     <div class="form-group">
                         <div class="col-xs-12">
                             <input class="form-control" type="password" tabindex="2" required="" placeholder="Password"
-                                maxlength="{{utilsService.validationService.MAX_32}}" [(ngModel)]="loginService.loginParamOb.password"
+                                maxlength="{{utilsService.validationService.MAX_32}}" (keyup.enter)="loginService.checkLoginForm()" [(ngModel)]="loginService.loginParamOb.password"
                                 [formControl]="loginService.form.controls['password']">
                             <small class="text-danger">
-                                <h6 *ngIf="(loginService.form.controls['password'].hasError('required') || !loginService.form.controls['password'].valid) && loginService.form.controls['password'].touched">{{utilsService.validationService.INVALID_LOGIN_PASSWORD}}</h6>
+                                <!-- <h6 *ngIf="(loginService.form.controls['password'].hasError('required') || !loginService.form.controls['password'].valid) && loginService.form.controls['password'].touched">{{utilsService.validationService.INVALID_LOGIN_PASSWORD}}</h6> -->
                             </small>
                         </div>
                     </div>

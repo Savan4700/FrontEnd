@@ -108,7 +108,8 @@
               
               <div class="float-right">
                 <!-- <button class="btn btn-primary" (click)="goNext(1)"> Next </button> -->
-                <button class="btn btn-success" tabindex="10" [disabled]="(!formSubmitService.form.valid || formSubmitService.registerUser.password != formSubmitService.confirmPassword)"
+                <!-- [disabled]="(!formSubmitService.form.valid || formSubmitService.registerUser.password != formSubmitService.confirmPassword)" -->
+                <button class="btn btn-success" tabindex="10" 
                   (click)="formSubmitService.checkData()">
                   Register </button>
 

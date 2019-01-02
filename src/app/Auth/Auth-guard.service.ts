@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { CanDeactivate, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { UtilsService } from '../shared/service/utils.service';
+import { MyNavService } from '../my-nav/my-nav.service';
 export interface CanComponentDeactivate {
     canDeactivate: () => Promise<boolean> | boolean;
 }
@@ -10,6 +11,7 @@ export class AuthGuard implements CanActivate , CanDeactivate<CanComponentDeacti
 
     constructor(
         public utilsService: UtilsService,
+        public homeService: MyNavService,
         public router: Router
     ) {
 
@@ -22,25 +24,34 @@ export class AuthGuard implements CanActivate , CanDeactivate<CanComponentDeacti
     }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         try {
-            console.log(route);
-            if ( route.routeConfig.path === 'work_area') {
-                if (this.utilsService.isAuthenticated()) {
-                    return true;
-                } else {
-                    // this.utilsService.logoutLink();
-                }
+            if (this.utilsService.isAuthenticated()) {
+                return true;
             } else {
-                if (this.utilsService.isAuthenticated()) {
-                    // this.utilsService.signin();
-                } else {
-                    console.log('this is true');
-                    return true;
-                }
+                console.log('here')
+                this.homeService.logout();
             }
-
-
         } catch (error) {
             return false;
         }
+        // try {
+        //     console.log(route);
+        //     if ( route.routeConfig.path === 'work_area') {
+        //         if (this.utilsService.isAuthenticated()) {
+        //             return true;
+        //         } else {
+        //             this.homeService.logout();
+        //         }
+        //     } else {
+        //         if (this.utilsService.isAuthenticated()) {
+        //             // this.utilsService.signin();
+        //         } else {
+        //             console.log('this is true');
+        //             return true;
+        //         }
+        //     }
+
+        // } catch (error) {
+        //     return false;
+        // }
     }
 }

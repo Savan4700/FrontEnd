@@ -9,7 +9,7 @@ import { AuthGuard } from '../Auth/Auth-guard.service';
 
 const routesForSingUp: Route[] = [
   { path: '', redirectTo: 'signup', pathMatch: 'full' },
-  { path: 'signup', component: SignupSigninComponent, canActivate: [AuthGuard], children: [
+  { path: 'signup', component: SignupSigninComponent, children: [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'form', component: FormSubmitComponent },

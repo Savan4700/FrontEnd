@@ -41,7 +41,7 @@ export class ServerVariableService {
 
   /*Get all API */
   customer = "customer"
-  arrayOfapiNameToExcludeToken = [this.loginAPI,this.customer];
+  arrayOfapiNameToExcludeToken = ['auth/signin','auth/signup'];
   getAllUserWithUserRoleAPI = 'getAllUserWithUserRole';
   getAllCountryMastersAPI = 'getAllCountryMasters';
   getAllStateMastersByCountryIdAPI = 'getAllStateMastersByCountryId';

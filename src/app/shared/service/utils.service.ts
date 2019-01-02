@@ -9,7 +9,7 @@ import { ValidationService } from './validation.service';
 import { HttpErrorResponse, HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 // import { NotificationsService } from 'angular2-notifications'; //npm install angular2-notifications
 import { ResponseWrapperDTO } from '../../model/ResponseWrapperDTO';
-import { UserMaster } from '../../Model/UserMaster'
+import { User } from '../../Model/User'
 // import { OrganizationProfile } from '../../model/master/OrganizationProfile';
 // import { ToasterConfig, ToasterService } from 'angular2-toaster'; //npm install angular2-toaster
 import { Location } from '@angular/common';
@@ -42,7 +42,7 @@ export class UtilsService {
    * links for local PC
    */
   // URL = 'http://192.168.2.57:1337/';
-  URL = 'http://192.168.43.47:8080/springbootcrmrest/api/';
+  URL = 'http://192.168.43.47:8080/api/';
   // SOCKET_URL = 'http://192.168.2.52:8080/clinicSocketConnections';
 
  
@@ -210,16 +210,16 @@ export class UtilsService {
 
     apiName = this.URL + apiName;
     return this.http.post(apiName, params, { headers: headers }).subscribe(response => {
-      // console.log(response);
+      console.log(response);
       // Read the result field from the JSON response.
       if (this.loaderStart > 0) {
         this.loaderStart--;
       }
-      const serverResponse = Deserialize(response, ResponseWrapperDTO);
-      if (!(serverResponse.status < 200 || serverResponse.status >= 300)) {
-        console.log('IF.. success response');
-        if (isDisplayToast) {
-          console.log('isdisplay message');
+      // const serverResponse = Deserialize(response, ResponseWrapperDTO);
+      // if (!(serverResponse.status < 200 || serverResponse.status >= 300)) {
+      //   console.log('IF.. success response');
+      //   if (isDisplayToast) {
+      //     console.log('isdisplay message');
           // this.setConfigAndDisplayPopUpNotification('success', '', serverResponse.message);
           // if (isToastAndDataBothRequired) {
           //   callback(serverResponse.data, true);
@@ -228,13 +228,13 @@ export class UtilsService {
           // callback(undefined, true);
           // callback(serverResponse.data, true);
           // return;
-        }
-        console.log('serverResponse.data' + serverResponse.data);
+        // }
+        // console.log('serverResponse.data' + serverResponse.data);
         // if (serverResponse.data && typeof serverResponse.data !== 'string') {
         //   console.log('string..');
         // }
-        callback(serverResponse.data, true);
-      }
+        callback(response, true);
+      // }
     },
       (err: HttpErrorResponse) => {
         console.log(`Backend returned code ${err.status}, body was: ${err.message}`);
@@ -242,18 +242,18 @@ export class UtilsService {
           // this.CreateNotification('error', 'Error', 'Server down.');
           // this.setConfigAndDisplayPopUpNotification('error', '', 'Server down..');
         } else {
-          const errorDTO = Deserialize(err.error, ResponseWrapperDTO);
-          // if (errorDTO.message === ServerVariableService.UNAUTHORIZED_ERROR_MESSAGE) {
-            // this.homeService.logout();
-          // }
-          if (errorDTO.isResponseOnPage) {
-            callback(errorDTO.message, false);
-            window.scroll(0, 0);
-          } else {
-            // this.setConfigAndDisplayPopUpNotification('error', '', errorDTO.message ? errorDTO.message : errorDTO.error);
-          }
+          // const errorDTO = Deserialize(err.error, ResponseWrapperDTO);
+          // // if (errorDTO.message === ServerVariableService.UNAUTHORIZED_ERROR_MESSAGE) {
+          //   // this.homeService.logout();
+          // // }
+          // if (errorDTO.isResponseOnPage) {
+            callback(err.error, false);
+        //     window.scroll(0, 0);
+        //   } else {
+        //     // this.setConfigAndDisplayPopUpNotification('error', '', errorDTO.message ? errorDTO.message : errorDTO.error);
+        //   }
         }
-        this.loaderStart--;
+        // this.loaderStart--;
       }
     );
   }
@@ -298,14 +298,14 @@ export class UtilsService {
       if (this.loaderStart > 0) {
         this.loaderStart--;
       }
-      const serverResponse = Deserialize(response, ResponseWrapperDTO);
+      // const serverResponse = Deserialize(response, ResponseWrapperDTO);
 
-      if (serverResponse.status < 200 || serverResponse.status >= 300) {
+      // if (serverResponse.status < 200 || serverResponse.status >= 300) {
         // this.CreateNotification('error', 'Error..!', serverResponse.message);
         // this.setConfigAndDisplayPopUpNotification('error', '', serverResponse.message);
-      } else {
-        callback(serverResponse.data);
-      }
+      // } else {
+        callback(response);
+      // }
     },
       (err: HttpErrorResponse) => {
         console.log(`Backend returned code ${err.status}, body was: ${err.message}`);
@@ -313,10 +313,10 @@ export class UtilsService {
           // this.CreateNotification('error', 'Error', 'Server down.');
           // this.setConfigAndDisplayPopUpNotification('error', '', 'Server down..');
         } else {
-          const errorDTO = Deserialize(err.error, ResponseWrapperDTO);
+          // const errorDTO = Deserialize(err.error, ResponseWrapperDTO);
           // this.CreateNotification('error', 'Error', errorDTO.message ? errorDTO.message : errorDTO.error);
           // this.setConfigAndDisplayPopUpNotification('error', '', errorDTO.message ? errorDTO.message : errorDTO.error);
-          callback(errorDTO.data);
+          callback(err.error);
         }
         this.loaderStart--;
       }
@@ -539,13 +539,13 @@ export class UtilsService {
 
   getUserName() {
 
-    let user = new UserMaster();
+    let user = new User();
     user = JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE));
     if (this.isEmptyObject(user)) {
       return;
     }
-    user = Deserialize(user, UserMaster);
-    return user ? user.userName.toString() : null;
+    user = Deserialize(user, User);
+    return user ? user.username.toString() : null;
   }
 
   // getOrganizationId() {
@@ -591,15 +591,15 @@ export class UtilsService {
     if (this.isEmptyObject(JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE)))) {
       return null;
     }
-    return Deserialize(JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE)), UserMaster);
+    return Deserialize(JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE)), User);
   }
 
   getUserId() {
     if (this.isEmptyObject(JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE)))) {
       return null;
     }
-    let user = new UserMaster();
-    user = Deserialize(JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE)), UserMaster);
+    let user = new User();
+    user = Deserialize(JSON.parse(localStorage.getItem(this.serverVariableService.USER_FOR_LOCAL_STORAGE)), User);
     return user ? user.id : null;
   }
   isAuthenticated() {
