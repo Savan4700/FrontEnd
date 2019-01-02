@@ -8,7 +8,7 @@ import { ServerVariableService } from './server-variable.service';
 import { ValidationService } from './validation.service';
 import { HttpErrorResponse, HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 // import { NotificationsService } from 'angular2-notifications'; //npm install angular2-notifications
-import { ResponseWrapperDTO } from '../../model/ResponseWrapperDTO';
+// import { ResponseWrapperDTO } from '../../model/ResponseWrapperDTO';
 import { User } from '../../Model/User'
 // import { OrganizationProfile } from '../../model/master/OrganizationProfile';
 // import { ToasterConfig, ToasterService } from 'angular2-toaster'; //npm install angular2-toaster
@@ -345,35 +345,35 @@ export class UtilsService {
         if (this.loaderStart > 0) {
           this.loaderStart--;
         }
-        const serverResponse = Deserialize(response, ResponseWrapperDTO);
-        if (!(serverResponse.status < 200 || serverResponse.status >= 300)) {
-          if (isDisplayToast) {
-            // this.setConfigAndDisplayPopUpNotification('success', '', serverResponse.message);
-            callback(undefined, true);
-          }
-          if (serverResponse.data && typeof serverResponse.data !== 'string') {
-            console.log(serverResponse.data);
-            callback(serverResponse.data, true);
-          }
-        }
+        // const serverResponse = Deserialize(response, ResponseWrapperDTO);
+        // if (!(serverResponse.status < 200 || serverResponse.status >= 300)) {
+        //   if (isDisplayToast) {
+        //     // this.setConfigAndDisplayPopUpNotification('success', '', serverResponse.message);
+        //     callback(undefined, true);
+        //   }
+        //   if (serverResponse.data && typeof serverResponse.data !== 'string') {
+        //     console.log(serverResponse.data);
+        //     callback(serverResponse.data, true);
+        //   }
+        // }
       },
       (err: HttpErrorResponse) => {
         console.log(`Backend returned code ${err.status}, body was: ${err.message}`);
         if (err.status === 0) {
           // this.setConfigAndDisplayPopUpNotification('error', '', 'Server down..');
         } else {
-          const errorDTO = Deserialize(err.error, ResponseWrapperDTO);
-          if (errorDTO.isResponseOnPage) {
-            window.scroll(0, 0);
-            callback(errorDTO.message, false);
-          } else {
-            // this.setConfigAndDisplayPopUpNotification('error', '', errorDTO.message ? errorDTO.message : errorDTO.error);
-            console.log(isCallbackRequired);
-            if (isCallbackRequired) {
-              callback(errorDTO.message, true);
-            }
-            // this.CreateNotification('error', 'Error', errorDTO.error);
-          }
+          // const errorDTO = Deserialize(err.error, ResponseWrapperDTO);
+          // if (errorDTO.isResponseOnPage) {
+          //   window.scroll(0, 0);
+          //   callback(errorDTO.message, false);
+          // } else {
+          //   // this.setConfigAndDisplayPopUpNotification('error', '', errorDTO.message ? errorDTO.message : errorDTO.error);
+          //   console.log(isCallbackRequired);
+          //   if (isCallbackRequired) {
+          //     callback(errorDTO.message, true);
+          //   }
+          //   // this.CreateNotification('error', 'Error', errorDTO.error);
+          // }
         }
         this.loaderStart--;
       });
@@ -407,17 +407,17 @@ export class UtilsService {
           this.loaderStart--;
         }
 
-        const serverResponse = Deserialize(response, ResponseWrapperDTO);
-        if (!(serverResponse.status < 200 || serverResponse.status >= 300)) {
-          if (isDisplayToast) {
-            // this.setConfigAndDisplayPopUpNotification('success', '', serverResponse.message);
-            // this.CreateNotification('success', 'Success..!', serverResponse.message);
-            callback(undefined, true);
-          }
-          if (serverResponse.data && typeof serverResponse.data !== 'string') {
-            callback(serverResponse.data, true);
-          }
-        }
+        // const serverResponse = Deserialize(response, ResponseWrapperDTO);
+        // if (!(serverResponse.status < 200 || serverResponse.status >= 300)) {
+        //   if (isDisplayToast) {
+        //     // this.setConfigAndDisplayPopUpNotification('success', '', serverResponse.message);
+        //     // this.CreateNotification('success', 'Success..!', serverResponse.message);
+        //     callback(undefined, true);
+        //   }
+        //   if (serverResponse.data && typeof serverResponse.data !== 'string') {
+        //     callback(serverResponse.data, true);
+        //   }
+        // }
       },
       (err: HttpErrorResponse) => {
         console.log(`Backend returned code ${err.status}, body was: ${err.message}`);
@@ -425,18 +425,18 @@ export class UtilsService {
           // this.CreateNotification('error', 'Error', 'Server down.');
           // this.setConfigAndDisplayPopUpNotification('error', '', 'Server down..');
         } else {
-          const errorDTO = Deserialize(err.error, ResponseWrapperDTO);
-          if (!errorDTO.isResponseOnPage) {
-            // callback(errorDTO.message, false);
-            this.msgFromDeleteAPIOnConflicts = errorDTO.message;
-            $('#deletConflicts').modal({
-              backdrop: 'static',
-              keyboard: false
-            });
-          } else {
-            // this.CreateNotification('error', 'Error', errorDTO.error);
-            // this.setConfigAndDisplayPopUpNotification('error', '', errorDTO.error ? errorDTO.error : errorDTO.message);
-          }
+          // const errorDTO = Deserialize(err.error, ResponseWrapperDTO);
+          // if (!errorDTO.isResponseOnPage) {
+          //   // callback(errorDTO.message, false);
+          //   this.msgFromDeleteAPIOnConflicts = errorDTO.message;
+          //   $('#deletConflicts').modal({
+          //     backdrop: 'static',
+          //     keyboard: false
+          //   });
+          // } else {
+          //   // this.CreateNotification('error', 'Error', errorDTO.error);
+          //   // this.setConfigAndDisplayPopUpNotification('error', '', errorDTO.error ? errorDTO.error : errorDTO.message);
+          // }
         }
         this.loaderStart--;
       });
