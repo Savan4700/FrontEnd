@@ -113,9 +113,10 @@ export class ValidationService {
   PATTERN_FOR_LANDLINE_NO = '^[0-9]{11}$';
   PATTERN_FOR_ADHARCARD_NO = '^[0-9]{12}$';
   PATTERN_FOR_PANCARD_NO = '^[A-Z]{5}[0-9]{4}[A-Z]{1}$';
+  // PATTERN_FOR_PASSWORD =
+  //   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{6,32}$/;
   PATTERN_FOR_PASSWORD =
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{6,32}$/;
-    // '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,32}$';
   PATTERN_FOR_GST_NO = /\d{2}[A-Z]{5}\d{4}[A-Z]{1}\d[Z]{1}[A-Z\d]{1}/;
   /* End pattern use for validation */
 

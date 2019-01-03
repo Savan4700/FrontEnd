@@ -74,7 +74,7 @@ label { font-weight: 500; color: #555;}
 
 /* step form */
 .register_bg {background: url(../img/pattern.png); background-repeat: repeat;background-color: #f8f8f8;}
-.regi_infograph {background-color: #24a03e ; color: #fff;width: 300px;text-align: center; padding-top: 30px;}
+.regi_infograph {background-color: #f3a229 ; color: #fff;width: 300px;text-align: center; padding-top: 30px;}
 .forms_regi {padding: 20px;width: 73%;}
 .mt-60 {margin-top:60px;}
 .mt-120 {margin-top:120px;}

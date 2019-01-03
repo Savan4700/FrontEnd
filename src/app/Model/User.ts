@@ -1,4 +1,5 @@
 import { serializeAs, deserializeAs, serialize } from 'cerialize';
+import { Role } from './Role';
 
 export class User {
 
@@ -6,9 +7,6 @@ export class User {
     @deserializeAs('id')
     private _id: string;
 
-    @serializeAs('name')
-    @deserializeAs('name')
-    private _name: string;
 
   
     @serializeAs('email')
@@ -21,20 +19,16 @@ export class User {
     
     @serializeAs('password')
     private _password: string;
+
+    private _confPassword: string;
     
-    @serializeAs('authorities')
-    @deserializeAs('authorities')
-    private _authorities: Array<object>;
+    @serializeAs('role')
+    @deserializeAs('role')
+    private _role: Array<string>;
 
     
 
-    /**
-     * Getter name
-     * @return {string}
-     */
-	public get name(): string {
-		return this._name;
-	}
+ 
 
     /**
      * Getter email
@@ -56,13 +50,7 @@ export class User {
 	}
 
 
-    /**
-     * Setter name
-     * @param {string} value
-     */
-	public set name(value: string) {
-		this._name = value;
-	}
+   
 
     /**
      * Setter email
@@ -91,13 +79,6 @@ export class User {
 		return this._username;
 	}
 
-    /**
-     * Getter authorities
-     * @return {Array<object>}
-     */
-	public get authorities(): Array<object> {
-		return this._authorities;
-	}
 
     /**
      * Setter username
@@ -107,13 +88,23 @@ export class User {
 		this._username = value;
 	}
 
+
     /**
-     * Setter authorities
-     * @param {Array<object>} value
+     * Getter _confPassword
+     * @return {string}
      */
-	public set authorities(value: Array<object>) {
-		this._authorities = value;
+	public get confPassword(): string {
+		return this._confPassword;
 	}
+
+    /**
+     * Setter _confPassword
+     * @param {string} value
+     */
+	public set confPassword(value: string) {
+		this._confPassword = value;
+	}
+    
   
 
     /**
@@ -132,4 +123,22 @@ export class User {
 		this._id = value;
 	}
     
+
+    /**
+     * Getter role
+     * @return {Array<string>}
+     */
+	public get role(): Array<string> {
+		return this._role;
+	}
+
+    /**
+     * Setter role
+     * @param {Array<string>} value
+     */
+	public set role(value: Array<string>) {
+		this._role = value;
+	}
+
+
 }   

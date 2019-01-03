@@ -1,6 +1,6 @@
 import { serializeAs, deserializeAs, serialize } from 'cerialize';
 
-export class User {
+export class Customer {
 
     @serializeAs('id')
     @deserializeAs('id')

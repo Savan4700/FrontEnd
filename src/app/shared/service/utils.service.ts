@@ -241,6 +241,7 @@ export class UtilsService {
         if (err.status === 0) {
           // this.CreateNotification('error', 'Error', 'Server down.');
           // this.setConfigAndDisplayPopUpNotification('error', '', 'Server down..');
+          callback('serverdown', false);
         } else {
           // const errorDTO = Deserialize(err.error, ResponseWrapperDTO);
           // // if (errorDTO.message === ServerVariableService.UNAUTHORIZED_ERROR_MESSAGE) {

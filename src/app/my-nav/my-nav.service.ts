@@ -25,7 +25,7 @@ export class MyNavService {
         // }
         console.log(this.utilsService.getUserFromLocalStorage())
         this.user = this.utilsService.getUserFromLocalStorage();
-        console.log(this.user.name);
+        // console.log(this.user.name);
 
     }
 
