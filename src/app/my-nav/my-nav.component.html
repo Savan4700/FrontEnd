@@ -24,20 +24,7 @@
                       <i class="ti-menu"></i>
                   </a>
               </li>
-              <!-- ============================================================== -->
-              <!-- Search -->
-              <!-- ============================================================== -->
-              <li class="nav-item hidden-sm-down search-box">
-                  <a class="nav-link hidden-sm-down text-muted waves-effect waves-dark">
-                      <i class="ti-search"></i>
-                  </a>
-                  <form class="app-search">
-                      <input type="text" class="form-control" placeholder="Search & enter">
-                      <a class="srh-btn">
-                          <i class="ti-close"></i>
-                      </a>
-                  </form>
-              </li>
+              
           </ul>
           <!-- User profile and search -->
           <ul class="navbar-nav my-lg-0">
@@ -63,15 +50,15 @@
                                   <div class="u-text">
                                       <h4>{{myNavService.user.username?myNavService.user.username:'----'}}</h4>
                                       <p class="text-muted">{{myNavService.user.email?myNavService.user.email:'----'}}</p>
-                                      <a class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+                                      <!-- <a class="btn btn-rounded btn-danger btn-sm">View Profile</a> -->
                                   </div>
                               </div>
                           </li>
                           <li role="separator" class="divider"></li>
-                          <li>
+                          <!-- <li>
                               <a>
                                   <i class="ti-settings"></i> Master Setting</a>
-                          </li>
+                          </li> -->
                           <li role="separator" class="divider"></li>
                           <!-- (click)="homeService.logout()" -->
                           <li >
@@ -105,9 +92,51 @@
                   </a>
               </li>
               <li>
-                  <a [routerLink]="['customer/view-customer']" [routerLinkActive]="['active']" class="waves-effect waves-dark" [routerLinkActive]="['active']">
+                  <a [routerLink]="['lok-sabha']" [routerLinkActive]="['active']" class="waves-effect waves-dark" [routerLinkActive]="['active']">
                       <i class="mdi mdi-chart-bubble"></i>
-                      <span class="hide-menu"> Customer </span>
+                      <span class="hide-menu"> Lok Sabha </span>
+                  </a>
+              </li>
+              <li>
+                  <a  [routerLinkActive]="['active']" class="waves-effect waves-dark" [routerLinkActive]="['active']">
+                      <i class="mdi mdi-chart-bubble"></i>
+                      <span class="hide-menu"> Vidhan Sabha </span>
+                  </a>
+              </li>
+              <li>
+                  <a  [routerLinkActive]="['active']" class="waves-effect waves-dark" [routerLinkActive]="['active']">
+                      <i class="mdi mdi-chart-bubble"></i>
+                      <span class="hide-menu"> Ward </span>
+                  </a>
+              </li>
+              <li>
+                  <a  [routerLinkActive]="['active']" class="waves-effect waves-dark" [routerLinkActive]="['active']">
+                      <i class="mdi mdi-chart-bubble"></i>
+                      <span class="hide-menu"> Sakti Kendra </span>
+                  </a>
+              </li>
+              <li>
+                  <a  [routerLinkActive]="['active']" class="waves-effect waves-dark" [routerLinkActive]="['active']">
+                      <i class="mdi mdi-chart-bubble"></i>
+                      <span class="hide-menu"> Booth </span>
+                  </a>
+              </li>
+              <li>
+                  <a [routerLinkActive]="['active']" class="waves-effect waves-dark" [routerLinkActive]="['active']">
+                      <i class="mdi mdi-chart-bubble"></i>
+                      <span class="hide-menu"> Page </span>
+                  </a>
+              </li>
+              <li>
+                  <a  [routerLinkActive]="['active']" class="waves-effect waves-dark" [routerLinkActive]="['active']">
+                      <i class="mdi mdi-chart-bubble"></i>
+                      <span class="hide-menu"> Member </span>
+                  </a>
+              </li>
+              <li>
+                  <a  [routerLinkActive]="['active']" class="waves-effect waves-dark" [routerLinkActive]="['active']">
+                      <i class="mdi mdi-chart-bubble"></i>
+                      <span class="hide-menu"> Voter </span>
                   </a>
               </li>
              
@@ -137,6 +166,6 @@
               <div class="loader"></div>
           </div>
       </div> -->
-      <footer class="footer"> © 2018 Developed by TechHive </footer>
+      <footer class="footer"> © 2018 Developed by RadheKrishna </footer>
   </div>
 </div>

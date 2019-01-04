@@ -6,9 +6,10 @@ import { MyNavComponent } from './my-nav.component';
 import { AuthGuard } from '../Auth/Auth-guard.service';
 import { DashbaordComponent } from './dashbaord/dashbaord.component';
 import { CustomerModule } from './Customer/customer.module';
+import { LokSabhaModule } from './lok-sabha/lok-sabha.module';
 
-export function loadCustomerModule() {
-  return CustomerModule;
+export function loadLokSabhaModule() {
+  return LokSabhaModule;
 }
 
 const routes: Routes = [
@@ -17,7 +18,7 @@ const routes: Routes = [
     path: 'work_area', component: MyNavComponent, canActivate: [AuthGuard], children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashbaordComponent },
-      { path: 'customer', loadChildren: loadCustomerModule }
+      { path: 'lok-sabha', loadChildren: loadLokSabhaModule }
 ]
 }
 ];
@@ -30,7 +31,7 @@ const routes: Routes = [
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
       MyNavComponent,
-      DashbaordComponent,
+      DashbaordComponent
     ]
 })
 export class MyNavModule {

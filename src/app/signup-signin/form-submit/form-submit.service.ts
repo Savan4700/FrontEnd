@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Deserialize, Serialize } from 'cerialize';
-import { FormMaster } from '../../Model/formData';
 import { UtilsService } from '../../shared/service/utils.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -12,7 +11,6 @@ import { User } from '../../Model/User';
   providedIn: 'root'
 })
 export class FormSubmitService {
-  formData = new FormMaster();
   form: FormGroup;
   registerUser = new User();
   submited:boolean = false;
