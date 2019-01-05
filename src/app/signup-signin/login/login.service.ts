@@ -34,6 +34,8 @@ export class LoginService {
     console.log(this.loginParamOb);
     this.submited = true;
     this.serverDown = false;
+    localStorage.setItem('isAuthenticate', 'true');
+    this.utilsService.redirectTo('/home/work_area/dashboard');
     this.utilsService.postMethodAPI(true, 'auth/signin', this.loginParamOb, (response) => {
       console.log(response);
       this.submited = false;
