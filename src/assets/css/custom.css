@@ -14,7 +14,7 @@
 .list_setting ul { padding-left: 10px; width: 100%; list-style: none; float: left; }
 .list_setting ul li { float: left; width: 100%; }
 .list_setting ul li a { padding: 6px 10px; color: #607d8b; display: block; font-weight: normal; font-size: 16px; }
-.topbar { position: relative; width: 100%; top: 0; z-index:1000;}
+.topbar { position: relative; width: 100%; top: 0; z-index:1000;height: 70px;}
 body .dropdown-list {z-index:99 !important;}
 /* .page-wrapper { padding-top: 70px; } */
 .master_sub_title { padding: 10px; border-bottom: 1px solid #ddd; }

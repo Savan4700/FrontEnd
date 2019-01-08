@@ -18,6 +18,6 @@ const routesForItem: Route[] = [
     RouterModule.forChild(routesForItem)
   ],
   providers: [],
-  declarations: [LokSabhaViewComponent,LokSabhaCreateComponent]
+  declarations: [LokSabhaViewComponent, LokSabhaCreateComponent]
 })
-export class LokSabhaModule { }
+export class LokSabhaModule {}

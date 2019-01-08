@@ -1,0 +1,113 @@
+<div >
+  <div class="row page-titles">
+      <!-- <div class="col-md-5 col-8 align-self-center">
+          <h3 class="text-themecolor">{{lokSabhaCreateService.textForAddorUpdate}} Item</h3>
+          <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                  <a [routerLink]="['../../view-item']">Item</a>
+              </li>
+              <li class="breadcrumb-item active">{{lokSabhaCreateService.textForAddorUpdate}} Item </li>
+          </ol>
+      </div> -->
+      <div class="col-md-5 col-8 align-self-center">
+          <h3 class="text-themecolor">Create Vidhan Sabha</h3>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a >Home</a>
+            </li>
+            <li class="breadcrumb-item active">Create Vidhan Sabha</li>
+          </ol>
+        </div>
+      <div class="col-md-7 col-4 align-self-center">
+          <div class="d-flex m-t-10 justify-content-end">
+              <div class="d-flex m-r-20 m-l-10 hidden-md-down">
+                  <div class="chart-text m-r-10">
+                      <h4 class="m-b-0">
+                          <a class="text-secondary" (click)="utilsService.gotoBackPage()">
+                              <i class="mdi mdi-close"></i>
+                          </a>
+                      </h4>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+  <!-- Components -->
+  <div class="row">
+      <div class="col-lg-12">
+            <!-- card-outline-info -->
+          <div class="card ">
+              <!-- <div class="card-header">
+              <h4 class="m-b-0 text-white">Organization Profile</h4>
+          </div> -->
+              <div class="card-body">
+                  <div class="alert alert-danger" *ngIf="lokSabhaCreateService.errors.length > 0">
+                      <button type="button" class="close" (click)="lokSabhaCreateService.hideErrorDiv()">&times;</button>
+                      <ul>
+                          <li *ngFor="let err of lokSabhaCreateService.errors">
+                              {{err}}
+                          </li>
+                      </ul>
+                  </div>
+                  <div class="form-body">
+                      <div class="row label_width_fixed m-t-15">
+                          <div class="col-md-6">
+                              <div class="form-group row">
+                                  <label class="control-label text-right col-md-4">
+                                      Code
+                                  </label>
+                                  <div class="col-md-8">
+                                      <input type="text" class="form-control" name="names" [(ngModel)]="lokSabhaCreateService.lokSabha.code"/>
+                                  </div>
+                              </div>
+                              <div class="form-group row">
+                                  <label class="control-label text-right col-md-4">
+                                      Name
+                                  </label>
+                                  <!-- <span class="text-danger">*</span> -->
+                                  <div class="col-md-8">
+                                      <input type="text"tabindex="2" class="form-control" [(ngModel)]="lokSabhaCreateService.lokSabha.name" maxlength="{{utilsService.validationService.ITEM_NAME_SIZE}}"
+                                          >
+                                         
+                                  </div>
+                              </div>
+                              
+
+                              <div class="form-group row">
+                                  <label class="control-label text-right col-md-4">Description</label>
+                                  <div class="col-md-8">
+                                      <input type="text" class="form-control" [(ngModel)]="lokSabhaCreateService.lokSabha.description" />
+                                      <!-- <h6 *ngIf="!lokSabhaCreateService.itemForm.controls['openingStock'].valid && lokSabhaCreateService.itemForm.controls['openingStock'].touched">
+                                          <span class="text-danger"> {{utilsService.validationService.INVALID_FOR_OPENING_STOCK}}</span>
+                                      </h6> -->
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <hr>
+                  <div class="form-actions">
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="row">
+                                  <div class="col-md-offset-3 col-md-9">
+                                      <!-- (click)="lokSabhaCreateService.insertItemMethod()" [disabled]="lokSabhaCreateService.itemForm.invalid" -->
+                                      <button type="submit" class="btn btn-info waves-effect"  >Save</button>
+                                      <button type="button" class="btn btn-default waves-effect waves-light" (click)="utilsService.gotoBackPage()">
+                                          Cancel
+                                      </button>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-6"> </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+</div>

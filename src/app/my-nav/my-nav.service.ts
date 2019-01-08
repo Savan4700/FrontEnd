@@ -8,14 +8,13 @@ import { User } from '../Model/User';
 })
 
 export class MyNavService {
-    
-    profileUrl: String;
-    name = "savan";
+
+    profileUrl: string;
     user = new User();
     menuList = [
-        {'menuName':'Dashboard','url':''},
-        {'menuName':'About Us','url':''},
-        {'menuName':'Contact Us','url':''}
+        {'menuName': 'Dashboard', 'url': ''},
+        {'menuName': 'About Us', 'url': ''},
+        {'menuName': 'Contact Us', 'url': ''}
     ];
     constructor(public utilsService: UtilsService) { }
 
@@ -23,7 +22,7 @@ export class MyNavService {
         // if (this.user.mapOfOtherDetails && this.user.mapOfOtherDetails['nameOfUserType']) {
             // this.profileUrl = '/home/work_area/staff/profile';
         // }
-        console.log(this.utilsService.getUserFromLocalStorage())
+        console.log(this.utilsService.getUserFromLocalStorage());
         this.user = this.utilsService.getUserFromLocalStorage();
         // console.log(this.user.name);
 

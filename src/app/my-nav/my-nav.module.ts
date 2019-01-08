@@ -7,9 +7,13 @@ import { AuthGuard } from '../Auth/Auth-guard.service';
 import { DashbaordComponent } from './dashbaord/dashbaord.component';
 import { CustomerModule } from './Customer/customer.module';
 import { LokSabhaModule } from './lok-sabha/lok-sabha.module';
+import { VidhanSabhaModule } from './vidhan-sabha/vidhan-sabha.module';
 
 export function loadLokSabhaModule() {
   return LokSabhaModule;
+}
+export function loadVidhanSabhaModule() {
+  return VidhanSabhaModule;
 }
 
 const routes: Routes = [
@@ -18,7 +22,8 @@ const routes: Routes = [
     path: 'work_area', component: MyNavComponent, canActivate: [AuthGuard], children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashbaordComponent },
-      { path: 'lok-sabha', loadChildren: loadLokSabhaModule }
+      { path: 'lok-sabha', loadChildren: loadLokSabhaModule },
+      { path: 'vidhan-sabha', loadChildren: loadVidhanSabhaModule }
 ]
 }
 ];

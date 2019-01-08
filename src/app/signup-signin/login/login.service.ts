@@ -13,12 +13,12 @@ export class LoginService {
     username: string,
     password: string,
   } = {
-      username: "",
-      password: ""
+      username: '',
+      password: ''
     };
-  errorCheck: boolean = false;
-  submited: boolean = false;
-  serverDown: boolean = false;
+  errorCheck: boolean;
+  submited: boolean;
+  serverDown: boolean;
   form: FormGroup;
   constructor(public utilsService: UtilsService, public router: Router) { }
   resetVariable() {
@@ -26,8 +26,8 @@ export class LoginService {
     this.submited = false;
     this.serverDown = false;
     this.loginParamOb = {
-      username: "",
-      password: ""
+      username: '',
+      password: ''
     };
   }
   checkLoginForm() {
@@ -39,7 +39,7 @@ export class LoginService {
     this.utilsService.postMethodAPI(true, 'auth/signin', this.loginParamOb, (response) => {
       console.log(response);
       this.submited = false;
-      if (response != 'serverdown') {
+      if (response !== 'serverdown') {
         if (!this.utilsService.isNullUndefinedOrBlank(response.accessToken)) {
           this.errorCheck = false;
           this.setLocalStorage(response).then(() => {

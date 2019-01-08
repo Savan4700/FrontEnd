@@ -393,7 +393,7 @@ form label { font-weight: 400 }
 .topbar { position: relative; z-index: 50; -webkit-box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.5); box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.5) }
 .topbar .top-navbar { min-height: 70px; padding: 0px 15px 0 0 }
 .topbar .top-navbar .dropdown-toggle:after { display: none }
-.topbar .top-navbar .navbar-header { line-height: 65px; text-align: center }
+.topbar .top-navbar .navbar-header { line-height: 65px; text-align: center ;margin-bottom: 12px;}
 .topbar .top-navbar .navbar-header .navbar-brand { margin-right: 0px; padding-bottom: 0px; padding-top: 0px }
 .topbar .top-navbar .navbar-header .navbar-brand .light-logo { display: none }
 .topbar .top-navbar .navbar-header .navbar-brand b { line-height: 70px; display: inline-block }
@@ -1114,7 +1114,7 @@ a.mytooltip { font-weight: 500; color: #009efb }
 .plugin-details { display: none }
 .plugin-details-active { display: block }
 .form-control-line .form-control { -webkit-box-shadow: none; box-shadow: none }
-.left-sidebar { position: absolute; width: 240px; height: 100%; top: 0px; z-index: 20; padding-top: 70px; background: #fff; -webkit-box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08); box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08) }
+.left-sidebar { position: absolute; width: 240px; height: 100%; top: 0; z-index: 20; padding-top: 70px; background: #fff; -webkit-box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08); box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08) }
 .fix-sidebar .left-sidebar { position: fixed }
 .user-profile { position: relative; background-size: cover }
 .user-profile .profile-img { width: 50px; margin-left: 30px; padding: 35px 0; border-radius: 100% }
