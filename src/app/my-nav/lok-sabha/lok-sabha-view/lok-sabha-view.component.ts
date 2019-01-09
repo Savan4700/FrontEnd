@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LokSabhaViewService } from './lok-sabha-view.service';
 
 @Component({
   selector: 'app-lok-sabha-view',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LokSabhaViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(public lokSabhaViewService: LokSabhaViewService) { }
 
   ngOnInit() {
+    this.lokSabhaViewService.getAllLokSabha();
   }
 
 }

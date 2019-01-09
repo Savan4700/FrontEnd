@@ -12,7 +12,7 @@ export class UserMaster {
   @serializeAs('lastName')
   @deserializeAs('lastName')
   private _lastName: string;
-  
+
   @serializeAs('middleName')
   @deserializeAs('middleName')
   private _middleName: string;

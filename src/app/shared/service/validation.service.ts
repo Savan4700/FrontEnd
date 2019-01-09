@@ -3,7 +3,7 @@ import { INVALID } from '@angular/forms/src/model';
 
 @Injectable()
 export class ValidationService {
-  constructor() {}
+  constructor() { }
 
   /* Variables for set Max Length  */
   // AMOUNT START
@@ -120,90 +120,15 @@ export class ValidationService {
   PATTERN_FOR_GST_NO = /\d{2}[A-Z]{5}\d{4}[A-Z]{1}\d[Z]{1}[A-Z\d]{1}/;
   /* End pattern use for validation */
 
-  // validation message start
-  // SIGN UP START
-  REQUIRED_PANCARD_NO = 'PAN Card No. is required.';
-  REQUIRED_GST_NO = 'GST No. is required.';
-  REQUIRED_AADHAR_NO = 'Aadhaar No. is required.';
+  // loksabha start
+  REQUIRED_CODE = 'Code is required.';
+  REQUIRED_NAME = 'Name is required.';
+  REQUIRED_DESCRIPTION = 'Description is required.';
 
-  INVALID_PANCARD_NO = 'Please enter valid PAN Card No.';
-  INVALID_GST_NO = 'Please enter valid GST No.';
-  INVALID_AADHAR_NO = 'Please enter valid Aadhaar No.';
-  INVALID_DATE_OF_BIRTH = 'Please select valid Date of Birth.';
-  // SIGN UP END
-
-  // LOGIN
-  USERNAME_OR_EMAIL = 'Please enter valid Email or User Name.';
-  INVALID_LOGIN_PASSWORD = 'Please enter valid Password.';
-  // LOGIN END
-
-  /* Use for Masters  */
-  REQUIRED_CATEGORY_NAME = 'Category Name is required.';
-  REQUIRED_CITY_NAME = 'City Name is required.';
-  REQUIRED_STATE_NAME = 'State Name is required.';
-  REQUIED_LAB_REPORT_NAME = 'Lab Report Name is required.';
-  REQUIED_TREATMENT_NAME = 'Treatement Name is required.';
-  REQUIRED_SERVICE_NAME = 'Service Name is required.';
-  REQUIRED_LANGUAGE_NAME = 'Language Name is required.';
-  REQUIRED_SPECIALIST_NAME = 'Name is required.';
-  REQUIRED_ASSIGN_ROLE_NAME = 'Role name is required.';
-  REQUIRED_ROLE_NAME = 'User Role Name is required.';
-  REQUIRED_USER_ROLE_FOR_SYSTEM_ACCESS = 'Please select User Role.';
-
-  // validation message start
-
+  INVALID_CODE = 'Please enter valid Code.';
   INVALID_NAME = 'Please enter valid Name.';
-  INVALID_SERVICE_NAME = 'Please enter valid Service Name.';
-  INVALID_CATEGORY_NAME = 'Please enter valid Category Name.';
-  INVALIDE_STATE_NAME = 'Please enter valid State Name.';
-  INVALIDE_CITY_NAME = 'Please enter valid City Name.';
-  INVALIDE_USER_ROLE_NAME = 'Please enter valid User Role Name.';
-  INVALIDE_LANGUAGE_NAME = 'Please enter valid Language Name.';
-  INVALID_LAB_REPORT_NAME = 'Please enter valid Lab Report Name.';
-  INVALID_TREATMENT_NAME = 'Please enter valid Treatement Name.';
-  INVALID_MOBILE_OR_EMAIL = 'Please enter your registered Mobile No./Email Id.';
-  INVALID_OTP = 'Please enter valid OTP.';
-  /* End Masters Message */
-
-  // validation message for add medicine
-  REQUIRED_MEDICINE_CODE = 'Medicine Code is requied.';
-  REQUIRED_MEDICINE_NAME = 'Medicine Name is requied.';
-  REQUIRED_GENERIC_NAME = 'Generic Name is requied.';
-  REQUIRED_BRAND_NAME = 'Brand Name is requied.';
-  REQUIRED_EXPIRY_DATE = 'Expiry Date is required.';
-  REQUIRED_MFG_DATE = 'Manufacture Date is required.';
-  REQUIRED_QTY = 'Qty is required.';
-  REQUIRED_PRICE = 'Price is required.';
-
-  INVALID_MEDICINE_CODE = 'Medicine Code allow only alphanumeric value.';
-  INVALID_MEDICINE_NAME = 'Medicine Name allow only alphanumeric value.';
-  INVALID_GENERIC_NAME = 'Generic Name allow only alphanumeric value.';
-  INVALID_BRAND_NAME = 'Please enter valid Brand Name.';
-  INVALID_EXPIRY_DATE = 'Expiry Date is required.';
-  INVALID_MFG_DATE = 'Manufacture Date is required.';
-  INVALID_QTY = 'Qty allow only numeric value.';
-  INVALID_PRICE = 'Price allow only numeric value.';
-
-  // end add medicine
-  // validation msg for add clinic
-  REQUIRED_CLINIC_NAME = 'Clinic Name is required.';
-  REQUIRED_SERVICES_PROVIDED = 'Plaese select Service Proveded.';
-  REQUIRED_SERVICES_PROVIDE_SERVICE_SINCE =
-    'Provide Service Since is required.';
-  REQUIRED_CLINIC_STAFF_STRENGTH = 'Clinic Staff Strength is required.';
-  REQUIRED_FEES = 'Fees is required.';
-  REQUIRED_LandLine_NUMBER = 'LandLine No. is required.';
-  INVALID_LANDLINE_NUMBER = 'Please enter valid LandLine No.';
-  REQUIRED_ADDRESS = 'Address is required.';
-  REQUIRED_CLINIC_ADDRESS = 'Address is required.';
-  INVALID_CLINIC_NAME = 'Clinic Name allow only alphanumeric value.';
-  INVALID_ERVICES_PROVIDE_SERVICE_SINCE =
-    'Provide Service Since allow only numeric value.';
-  INVALID_CLINIC_STAFF_STRENGTH =
-    'Clinic Staff Strength allow only numeric value.';
-  INVALID_FEES = 'Fees allow only numeric value.';
-  INVALID_ADDRESS = 'Please enter valid Address.';
-  // end add clinic
+  INVALID_DESCRIPTION = 'Please enter valid Description.';
+  // loksabha end
 
   // use for comman
   REQUIRED_FIRST_NAME = 'First Name is required.';
@@ -221,44 +146,6 @@ export class ValidationService {
   REQUIRED_PATIENT_OR_VISITOR_NAME = 'Patient/Visitor Name is required.';
 
   // validation msg for add staff
-
-  // validation msg for doctor registration Step 3
-  REQUIRED_QUALIFICATION = 'Qualification is required.';
-  REQUIRED_PRACTICESINCE = 'Practice Since is required.';
-  REQUIRED_AWARDSANDACHIEVEMENTS = 'Awards/Achievements is required.';
-  REQUIRED_PROFESSIONALEXPERIENCE = 'Prodessional Experience is required.';
-  REQUIRED_AFFILIATEDANDASSOCIATED = 'Affiliated/Associated is required.';
-  REQUIRED_MINUTE_PER_PATIENT = 'Minute Per Patient is required.';
-
-  INVALID_QUALIFICATION = 'Please enter valid Qualification.';
-  INVALID_PRACTICESINCE = 'Please enter valid Practice Since.';
-  INVALID_AWARDSANDACHIEVEMENTS = 'Please enter valid Awards/Achievements.';
-  INVALID_PROFESSIONALEXPERIENCE =
-    'Please enter valid Professional Experience.';
-  INVALID_AFFILIATEDANDASSOCIATED =
-    'Please enter valid Affiliated/Associated With.';
-  INVALID_MINUTE_PER_PATIENT = 'Minute Per Patient allow only numeric value.';
-
-  // end  validation msg for doctor registration Step 3
-  // validation Message for Timeslot Modal
-
-  REQUIRED_HOSPITAL = 'Please select Clinic.';
-  REQUIRED_USER = 'Please select Doctor.';
-  // validation Message for Timeslot Modal
-
-  REQUIRED_SYSTEM_ACCESS = 'Please select System Access.';
-  REQUIRED_CLINIC = 'Please select Clinic.';
-  REQUIRED_USER_ROLE = 'Please select System Access.';
-  REQUIRED_TYPE = 'Please select Type.';
-  REQUIRED_MENU = 'Please select Menu.';
-
-  REQUIRED_PREFFERED_LANGUAGE = 'Please select Preffered Language.';
-  REQUIRED_AGE = 'Age is required.';
-  REQUIRED_CITY = 'Please select City.';
-  REQUIRED_STATE = 'Please select State.';
-  REQUIRED_PINCODE = 'Pin Code is required.';
-  REQUIRED_CATEGORY = 'Please select Category';
-  REQUIRED_SPECIALIST = 'Please select Specialist.';
 
   //  use For common msg for Invalid
   INVALID_FIRST_NAME = 'First Name allow only alphabetic value.';
@@ -286,27 +173,4 @@ export class ValidationService {
 
   // end  use For common msg for Invalid
 
-  // validation msg for view patient FEES start
-  REQUIRED_FEES_AMOUNT = 'Fees Amount is required.';
-  REQUIRED_PAYMENT_MODE = 'Please select Payment Mode.';
-  REQUIRED_DATE = 'Please select valid Date.';
-  REQUIRED_PAYMENT_DATE = 'Please select valid Payment Date.';
-  REQUIRED_PAYMENT_AMOUNT = 'Payment Amount is required.';
-  REQUIRED_PAYMENT_DUE_AMOUNT = 'Payment Due Amount is required.';
-
-  INVALID_FEES_AMOUNT = 'Please enter valid Fees Amount.';
-  INVALID_PAYMENT_AMOUNT = 'Please enter valid Payment Amount.';
-  INVALID_PAYMENT_AMOUNT_GRETER_AMOUNT =
-    'Payment Amount should be less then Fees Amount.';
-  INVALID_PAYMENT_DUE_AMOUNT = 'Please enter valid Payment Due Amount.';
-  // validation msg for view patient end
-
-  // validation message end
-
-  /* Use for create case*/
-  SELECT_PATIENT_NAME = 'Please select Patient Name.';
-  CASE_DATE = 'Please select Date.';
-  REQUIRED_PROBLEM_DESCRIPTION_NAME = 'Problem Description is required.';
-  INVALID_PROBLEM_DESCRIPTION_NAME = 'Please enter valid Problem Description.';
-  /* End create case*/
 }

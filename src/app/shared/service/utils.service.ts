@@ -7,9 +7,9 @@ import { Injectable } from '@angular/core';
 import { ServerVariableService } from './server-variable.service';
 import { ValidationService } from './validation.service';
 import { HttpErrorResponse, HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-// import { NotificationsService } from 'angular2-notifications'; //npm install angular2-notifications
+import { NotificationsService } from 'angular2-notifications'; // npm install angular2-notifications
 // import { ResponseWrapperDTO } from '../../model/ResponseWrapperDTO';
-import { User } from '../../Model/User'
+import { User } from '../../Model/User';
 // import { OrganizationProfile } from '../../model/master/OrganizationProfile';
 // import { ToasterConfig, ToasterService } from 'angular2-toaster'; //npm install angular2-toaster
 import { Location } from '@angular/common';
@@ -45,7 +45,7 @@ export class UtilsService {
   URL = 'http://192.168.43.47:8080/api/';
   // SOCKET_URL = 'http://192.168.2.52:8080/clinicSocketConnections';
 
- 
+
   ALREADY_AVAILABLE_RESULT = 'Already Available';
   INVALID_START_DATE = 'invalid start date';
   DELETE_RECORD = 'Successfully record deleted.';
@@ -78,7 +78,7 @@ export class UtilsService {
 
   constructor(
     public router: Router,
-    // public _service: NotificationsService,
+    public _service: NotificationsService,
     public http: HttpClient,
     public serverVariableService: ServerVariableService,
     public validationService: ValidationService,
@@ -193,13 +193,14 @@ export class UtilsService {
   }
 
   /**
-   * @author : abhay-suchak
+   * @author : savan
    * @param isDisplayToast display tost or not , pass true or false
    * @param url API name
    * @param params params
    * @param callback response of server
    */
-  postMethodAPI(isDisplayToast, apiName, params, callback: (response: any, isRoute: boolean) => void, isToastAndDataBothRequired?: boolean) {
+  postMethodAPI(isDisplayToast, apiName, params, callback: (response: any,
+     isRoute: boolean) => void, isToastAndDataBothRequired?: boolean) {
     this.loaderStart++;
     this.customJsonInclude(params);
     console.log(JSON.stringify(params));
@@ -220,20 +221,20 @@ export class UtilsService {
       //   console.log('IF.. success response');
       //   if (isDisplayToast) {
       //     console.log('isdisplay message');
-          // this.setConfigAndDisplayPopUpNotification('success', '', serverResponse.message);
-          // if (isToastAndDataBothRequired) {
-          //   callback(serverResponse.data, true);
-          //   return;
-          // }
-          // callback(undefined, true);
-          // callback(serverResponse.data, true);
-          // return;
-        // }
-        // console.log('serverResponse.data' + serverResponse.data);
-        // if (serverResponse.data && typeof serverResponse.data !== 'string') {
-        //   console.log('string..');
-        // }
-        callback(response, true);
+      // this.setConfigAndDisplayPopUpNotification('success', '', serverResponse.message);
+      // if (isToastAndDataBothRequired) {
+      //   callback(serverResponse.data, true);
+      //   return;
+      // }
+      // callback(undefined, true);
+      // callback(serverResponse.data, true);
+      // return;
+      // }
+      // console.log('serverResponse.data' + serverResponse.data);
+      // if (serverResponse.data && typeof serverResponse.data !== 'string') {
+      //   console.log('string..');
+      // }
+      callback(response, true);
       // }
     },
       (err: HttpErrorResponse) => {
@@ -248,11 +249,11 @@ export class UtilsService {
           //   // this.homeService.logout();
           // // }
           // if (errorDTO.isResponseOnPage) {
-            callback(err.error, false);
-        //     window.scroll(0, 0);
-        //   } else {
-        //     // this.setConfigAndDisplayPopUpNotification('error', '', errorDTO.message ? errorDTO.message : errorDTO.error);
-        //   }
+          callback(err.error, false);
+          //     window.scroll(0, 0);
+          //   } else {
+          //     // this.setConfigAndDisplayPopUpNotification('error', '', errorDTO.message ? errorDTO.message : errorDTO.error);
+          //   }
         }
         // this.loaderStart--;
       }
@@ -273,7 +274,7 @@ export class UtilsService {
   }
 
   /**
-   * @author : abhay-suchak
+   * @author : savan
    * @param API API name
    * @param params params
    * @param callback response of server
@@ -302,10 +303,10 @@ export class UtilsService {
       // const serverResponse = Deserialize(response, ResponseWrapperDTO);
 
       // if (serverResponse.status < 200 || serverResponse.status >= 300) {
-        // this.CreateNotification('error', 'Error..!', serverResponse.message);
-        // this.setConfigAndDisplayPopUpNotification('error', '', serverResponse.message);
+      // this.CreateNotification('error', 'Error..!', serverResponse.message);
+      // this.setConfigAndDisplayPopUpNotification('error', '', serverResponse.message);
       // } else {
-        callback(response);
+      callback(response);
       // }
     },
       (err: HttpErrorResponse) => {
@@ -325,13 +326,14 @@ export class UtilsService {
   }
 
   /**
-   * @author : abhay-suchak
-   * @param isDisplayToast
-   * @param url
-   * @param params
-   * @param id
-   * @param callback
+   * @author : savan
+   * @param isDisplayToast API isDisplayToast
+   * @param url url
+   * @param params params
+   * @param id id
+   * @param callback callback
    */
+
   putMethodAPI(isDisplayToast, apiName, params, id, callback: (responseData: any, isRoute: boolean) => void, isCallbackRequired?: boolean) {
 
     this.loaderStart++;
@@ -361,6 +363,7 @@ export class UtilsService {
       (err: HttpErrorResponse) => {
         console.log(`Backend returned code ${err.status}, body was: ${err.message}`);
         if (err.status === 0) {
+          console.log('ds');
           // this.setConfigAndDisplayPopUpNotification('error', '', 'Server down..');
         } else {
           // const errorDTO = Deserialize(err.error, ResponseWrapperDTO);
@@ -378,14 +381,14 @@ export class UtilsService {
         }
         this.loaderStart--;
       });
-  }
+}
   /**
-   * @author : abhay-suchak
-   * @param isDisplayToast
-   * @param url
-   * @param params
-   * @param id
-   * @param callback
+   * @author : savan
+   * @param isDisplayToast isDisplayToast
+   * @param url url
+   * @param params params
+   * @param id id
+   * @param callback callback
    */
   deleteMethodAPI(isDisplayToast, apiName, ob, callback: (response: any, isRoute: boolean) => void) {
     let headers = new HttpHeaders();
@@ -480,8 +483,8 @@ export class UtilsService {
     return isCheckAll;
   }
   /**
-   * @author : abhay-suchak
-   * @param string
+   * @author : savan
+   * @param string string
    */
   capitalizeFirstLetter(string) {
     return string.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
@@ -502,29 +505,23 @@ export class UtilsService {
    * @param message Message - Display As '..BIG FONT...'.
    * @param content Message - Display As '..SMALL FONT...'.
    */
-  // CreateNotification(type, message, content) {
-  //   let timeOut = 0;
-  //   if (type === 'success') {
-  //     timeOut = 5000;
-  //   }
-  //   this._service.create(
-  //     message,
-  //     content,
-  //     type,
-  //     {
-  //       timeOut: timeOut,
-  //       showProgressBar: true,
-  //       pauseOnHover: true,
-  //       clickToClose: true,
-  //       maxLength: 1000
-
-  //     }
-  //   );
-  // }
-
-  // resetAllNotification() {
-  //   this._service.remove();
-  // }
+  CreateNotification(type, message, content) {
+    let timeOut = 0;
+    if (type === 'success') {
+      timeOut = 5000;
+    }
+    this._service.create(message, content, type, {
+      timeOut: timeOut,
+      showProgressBar: true,
+      pauseOnHover: true,
+      clickToClose: true,
+      maxLength: 1000
+    });
+  }
+  // used to reset all notifications
+  resetAllNotification() {
+    this._service.remove();
+  }
 
   getMenu() {
     return JSON.parse(localStorage.getItem('userMenus'));
@@ -709,7 +706,7 @@ export class UtilsService {
 
 
   /**
-   * @author:Abhay-Suchak
+   * @author:savan
    * For Generate Random String.
    */
   randomString() {
@@ -722,7 +719,7 @@ export class UtilsService {
   }
 
   /**
-   * @author Abhay-Suchak
+   * @author savan
    * @param x staring which you want to trim
    */
   trimString(x) {
@@ -775,23 +772,7 @@ export class UtilsService {
     script.defer = true;
     body.appendChild(script);
   }
-  setDropdownSettingForLazzyDropdown(singleSelection, NameOfPlaceHolder, isDisabled?: boolean, isAllowClear?: boolean, groupbyString?: string) {
-    return {
-      singleSelection: singleSelection,
-      text: 'Select ' + NameOfPlaceHolder,
-      selectAllText: 'Select All ' + NameOfPlaceHolder,
-      unSelectAllText: 'UnSelect All ' + NameOfPlaceHolder,
-      enableSearchFilter: true,
-      classes: 'myclass custom-class',
-      maxHeight: '100px',
-      disabled: isDisabled,
-      allowClear: (isAllowClear ? isAllowClear : true),
-      lazzyLoading: true,
-      groupBy: groupbyString,
-      badgeShowLimit: 3,
-      showCheckbox: singleSelection ? false : true
-    };
-  }
+
   setSettingForLocalStorage(params) {
     localStorage.setItem('settingMenu', params);
   }

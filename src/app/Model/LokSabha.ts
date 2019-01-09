@@ -22,66 +22,64 @@ export class LokSabha {
      * Getter id
      * @return {string}
      */
-	public get id(): string {
-		return this._id;
-	}
+    public get id(): string {
+        return this._id;
+    }
 
     /**
      * Getter code
      * @return {string}
      */
-	public get code(): string {
-		return this._code;
-	}
+    public get code(): string {
+        return this._code;
+    }
 
     /**
      * Getter name
      * @return {string}
      */
-	public get name(): string {
-		return this._name;
-	}
+    public get name(): string {
+        return this._name;
+    }
 
     /**
      * Getter description
      * @return {string}
      */
-	public get description(): string {
-		return this._description;
-	}
+    public get description(): string {
+        return this._description;
+    }
 
     /**
      * Setter id
      * @param {string} value
      */
-	public set id(value: string) {
-		this._id = value;
-	}
+    public set id(value: string) {
+        this._id = value;
+    }
 
     /**
      * Setter code
      * @param {string} value
      */
-	public set code(value: string) {
-		this._code = value;
-	}
+    public set code(value: string) {
+        this._code = value;
+    }
 
     /**
      * Setter name
      * @param {string} value
      */
-	public set name(value: string) {
-		this._name = value;
-	}
+    public set name(value: string) {
+        this._name = value;
+    }
 
     /**
      * Setter description
      * @param {string} value
      */
-	public set description(value: string) {
-		this._description = value;
-	}
-    
-    // vidhansabhas
-    // members
+    public set description(value: string) {
+        this._description = value;
+    }
+
 }

@@ -50,7 +50,7 @@ a.link:hover, a.link:focus { color: #2288e3 !important; }
 .sidebar-nav ul li.nav-small-cap { color: #99abb4; }
 .sidebar-nav > ul > li > a.active i, .sidebar-nav > ul > li > a:hover i { color: #438DE8; }
 .sidebar-nav > ul > li > a i { color: #99abb4;    width: 30px; }
-.sidebar-nav > ul > li > a.active { font-weight: 400; background: #ffffff; color: #2288e3; }
+.sidebar-nav > ul > li > a.active { font-weight: 400; background: #d4d3d1 !important; color: #2288e3; }
 .sidebar-nav > ul > li.active > a, .sidebar-nav > ul > li.active:hover > a { color: #ffffff !important; background: #438DE8 !important; }
 .sidebar-nav > ul > li.active > a i, .sidebar-nav > ul > li.active:hover > a i { color: #ffffff; }
 .sidebar-nav > ul > li.active > a:after, .sidebar-nav > ul > li.active:hover > a:after { border-color: #ffffff; }

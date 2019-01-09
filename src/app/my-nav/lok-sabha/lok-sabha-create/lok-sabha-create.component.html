@@ -10,12 +10,12 @@
           </ol>
       </div> -->
       <div class="col-md-5 col-8 align-self-center">
-          <h3 class="text-themecolor">Create Lok Sabha</h3>
+          <h3 class="text-themecolor">{{lokSabhaCreateService.textForAddorUpdate}} Lok Sabha</h3>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
               <a >Home</a>
             </li>
-            <li class="breadcrumb-item active">Create Lok Sabha</li>
+            <li class="breadcrumb-item active">{{lokSabhaCreateService.textForAddorUpdate}} Lok Sabha</li>
           </ol>
         </div>
       <div class="col-md-7 col-4 align-self-center">
@@ -59,18 +59,21 @@
                                       Code
                                   </label>
                                   <div class="col-md-8">
-                                      <input type="text" class="form-control" name="names" [(ngModel)]="lokSabhaCreateService.lokSabha.code"/>
-                                  </div>
+                                      <input type="text" class="form-control" maxlength="30" name="names"
+                                      [formControl]="lokSabhaCreateService.form.controls['code']" [(ngModel)]="lokSabhaCreateService.lokSabha.code"/>
+                                      <h6 *ngIf="lokSabhaCreateService.form.controls['code'].hasError('required') && lokSabhaCreateService.form.controls['code'].touched">{{utilsService.validationService.REQUIRED_CODE}}</h6>
+                                      <h6 *ngIf="!lokSabhaCreateService.form.controls['code'].hasError('required') && !lokSabhaCreateService.form.controls['code'].valid && lokSabhaCreateService.form.controls['code'].touched">{{utilsService.validationService.INVALID_CODE}}</h6>
+                                    </div>
                               </div>
                               <div class="form-group row">
                                   <label class="control-label text-right col-md-4">
                                       Name
                                   </label>
-                                  <!-- <span class="text-danger">*</span> -->
                                   <div class="col-md-8">
-                                      <input type="text"tabindex="2" class="form-control" [(ngModel)]="lokSabhaCreateService.lokSabha.name" maxlength="{{utilsService.validationService.ITEM_NAME_SIZE}}"
-                                          >
-                                         
+                                      <input type="text"tabindex="2" class="form-control" maxlength="50" [(ngModel)]="lokSabhaCreateService.lokSabha.name" maxlength="{{utilsService.validationService.ITEM_NAME_SIZE}}"
+                                      [formControl]="lokSabhaCreateService.form.controls['name']"  >
+                                      <h6 *ngIf="lokSabhaCreateService.form.controls['name'].hasError('required') && lokSabhaCreateService.form.controls['name'].touched">{{utilsService.validationService.REQUIRED_NAME}}</h6>
+                                      <h6 *ngIf="!lokSabhaCreateService.form.controls['name'].hasError('required') && !lokSabhaCreateService.form.controls['name'].valid && lokSabhaCreateService.form.controls['name'].touched">{{utilsService.validationService.INVALID_NAME}}</h6>    
                                   </div>
                               </div>
                               
@@ -78,10 +81,10 @@
                               <div class="form-group row">
                                   <label class="control-label text-right col-md-4">Description</label>
                                   <div class="col-md-8">
-                                      <input type="text" class="form-control" [(ngModel)]="lokSabhaCreateService.lokSabha.description" />
-                                      <!-- <h6 *ngIf="!lokSabhaCreateService.itemForm.controls['openingStock'].valid && lokSabhaCreateService.itemForm.controls['openingStock'].touched">
-                                          <span class="text-danger"> {{utilsService.validationService.INVALID_FOR_OPENING_STOCK}}</span>
-                                      </h6> -->
+                                      <input type="text" class="form-control" maxlength="300" [(ngModel)]="lokSabhaCreateService.lokSabha.description" 
+                                      [formControl]="lokSabhaCreateService.form.controls['description']"/>
+                                      <h6 *ngIf="lokSabhaCreateService.form.controls['description'].hasError('required') && lokSabhaCreateService.form.controls['description'].touched">{{utilsService.validationService.REQUIRED_DESCRIPTION}}</h6>
+                                      <h6 *ngIf="!lokSabhaCreateService.form.controls['description'].hasError('required') && !lokSabhaCreateService.form.controls['description'].valid && lokSabhaCreateService.form.controls['description'].touched">{{utilsService.validationService.INVALID_DESCRIPTION}}</h6>
                                   </div>
                               </div>
                           </div>
@@ -94,7 +97,8 @@
                               <div class="row">
                                   <div class="col-md-offset-3 col-md-9">
                                       <!-- (click)="lokSabhaCreateService.insertItemMethod()" [disabled]="lokSabhaCreateService.itemForm.invalid" -->
-                                      <button type="submit" class="btn btn-info waves-effect"  >Save</button>
+                                      <button type="submit" *ngIf="lokSabhaCreateService.opertaion == 'create'" (click)="lokSabhaCreateService.insertLokSabha()" [disabled]="lokSabhaCreateService.form.invalid" class="btn btn-info waves-effect"  >Save</button>
+                                      <button type="submit" *ngIf="lokSabhaCreateService.opertaion != 'create'" (click)="lokSabhaCreateService.insertLokSabha()" [disabled]="lokSabhaCreateService.form.invalid" class="btn btn-info waves-effect"  >Update</button>
                                       <button type="button" class="btn btn-default waves-effect waves-light" (click)="utilsService.gotoBackPage()">
                                           Cancel
                                       </button>

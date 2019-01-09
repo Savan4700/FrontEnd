@@ -5,7 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { MyNavComponent } from './my-nav.component';
 import { AuthGuard } from '../Auth/Auth-guard.service';
 import { DashbaordComponent } from './dashbaord/dashbaord.component';
-import { CustomerModule } from './Customer/customer.module';
+// import { CustomerModule } from './Customer/customer.module';
 import { LokSabhaModule } from './lok-sabha/lok-sabha.module';
 import { VidhanSabhaModule } from './vidhan-sabha/vidhan-sabha.module';
 

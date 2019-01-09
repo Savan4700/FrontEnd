@@ -3,7 +3,7 @@
     <h3 class="text-themecolor">Lok Sabha</h3>
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a >Home</a>
+        <a>Home</a>
       </li>
       <li class="breadcrumb-item active">Lok Sabha</li>
     </ol>
@@ -24,14 +24,15 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <div class="float-left form-inline"> 
-            <!-- viewItemService.paginationRequest. -->
-          <input type="text" [(ngModel)]="searchText" placeholder="Search Items.." class="form-control">
-            <!-- (ngModelChange)="viewItemService.getAllItems(undefined , viewItemService.paginationRequest.searchText)"> -->
+        <div class="float-left form-inline">
+          <input type="text" [(ngModel)]="searchText" placeholder="Search.." class="form-control">
         </div>
         <div class="float-right">
-            <!-- {{viewItemService.paginationResponse.totalElements}} -->
+          <!-- {{viewItemService.paginationResponse.totalElements}} -->
           <label>Total Count : 10</label>
+          <a class="text-info" (click)="lokSabhaViewService.goToEdit('123')">
+            <i class="ti-pencil-alt"></i>
+          </a>
         </div>
       </div>
       <div class="card-body no-padding">
@@ -40,76 +41,33 @@
             <thead>
               <tr>
                 <th>Code</th>
-                <!-- (click)="viewItemService.getAllItems(th.keyName)" -->
-                <th>
-                  Name
-                </th>
-                <th>
-                  Action
-                </th>
+                <th>Name</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
-                <!-- viewItemService.allItem (dblclick)="viewItemService.goToItemDetailsPage(item.id)" -->
-              <tr *ngFor="let item of customers" >
-                <!-- <td>{{(+viewItemService.paginationResponse.startPos) + i}}</td> -->
-                <td>{{item.id}}</td>
-                <td>{{item.firstName}}</td>
-                <td>{{item.lastName}}</td>
-                <!-- <td class="anchor-group">
-                  <a class="text-info" (click)="viewItemService.goToEdit(item.id)">
+              <tr *ngFor="let lokSabha of lokSabhaViewService.listOfLokSabha">
+                <td>{{lokSabha.code}}</td>
+                <td>{{lokSabha.name}}</td>
+                <td class="anchor-group">
+                  <a class="text-info" (click)="lokSabhaViewService.goToEdit(lokSabha.id)">
                     <i class="ti-pencil-alt"></i>
                   </a>
-                  <a class="text-danger" title="Delete" data-toggle="modal" data-target="#deleteItem" (click)="viewItemService.removeItem(item.id)">
+                  <a class="text-danger" title="Delete" data-toggle="modal" data-target="#deleteItem" (click)="lokSabhaViewService.removeItem(lokSabha.id)">
                     <i class="ti-trash"></i>
                   </a>
-                </td> -->
+                </td>
               </tr>
-              <!-- <tr *ngIf="viewItemService.allItem.length <= 0">
+              <tr *ngIf="lokSabhaViewService.listOfLokSabha.length <= 0">
                 <td colspan="5">
                   {{utilsService.serverVariableService.STRING_WHEN_NO_RECORDS_FOUND}}
                 </td>
-              </tr> -->
+              </tr>
             </tbody>
           </table>
         </div>
       </div>
-      <!-- <div class="card-footer" 
-      *ngIf="viewItemService.paginationResponse.totalElements > viewItemService.paginationRequest.minimumPerPage">
-        <div class="float-left">
-          <div class="record">
-            <div class="float-left page_dropdown" *ngIf="viewItemService.paginationResponse.pageArray.length > 0">
-              <techhive-multiselect [data]="viewItemService.paginationResponse.pageArray" [settings]="utilsService.serverVariableService.dropdownSettingForPageOfPagination"
-                [(ngModel)]="viewItemService.paginationRequest.pageNumber" (onSelect)="viewItemService.changePage()">
-              </techhive-multiselect>
-            </div>
-          </div>
-        </div>
-        <div class="paginations_list float-right">
-          <ul>
-            <li class="record" *ngIf="viewItemService.paginationRequest.noOfRecordPerPageArray.length > 0">
-              <techhive-multiselect [data]="viewItemService.paginationRequest.noOfRecordPerPageArray" [settings]="utilsService.serverVariableService.dropdownSettingForRecordOfPagination"
-                [(ngModel)]="viewItemService.paginationRequest.noOfRecords" (onSelect)="viewItemService.changeNoOfRecord()">
-              </techhive-multiselect>
-            </li>
-            <li class="prev">
-              <button class="btn btn-primary" [disabled]="viewItemService.paginationResponse.first" (click)="viewItemService.getPreviousData()">
-                <i class="fa fa-arrow-left" aria-hidden="true"></i>
-              </button>
-            </li>
-            <li class="pagination-number">
-              <a>
-                {{+viewItemService.paginationResponse.startPos}}-{{ +viewItemService.paginationResponse.endPos}}
-              </a>
-            </li>
-            <li class="next">
-              <button class="btn btn-primary" [disabled]="viewItemService.paginationResponse.last" (click)="viewItemService.getNextData()">
-                <i class="fa fa-arrow-right" aria-hidden="true"></i>
-              </button>
-            </li>
-          </ul>
-        </div>
-      </div> -->
+
     </div>
   </div>
 </div>

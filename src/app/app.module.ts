@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { NgbModule, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap'; //npm install --save @ng-bootstrap/ng-bootstrap
+import { NgbModule, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap'; // npm install --save @ng-bootstrap/ng-bootstrap
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './router/app-routing.module';
@@ -15,6 +15,7 @@ import {
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { SimpleNotificationsModule  } from 'angular2-notifications';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +25,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     CommonModule,
     SharedModule.forRoot(),
     NgbModule.forRoot(),
+    SimpleNotificationsModule.forRoot(),
     BrowserAnimationsModule,
     // LayoutModule,
     FormsModule,
@@ -37,8 +39,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: LocationStrategy, useClass: HashLocationStrategy } ,
   ],
   exports: [RouterModule],
   bootstrap: [AppComponent]
