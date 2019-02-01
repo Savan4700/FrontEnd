@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { VidhanSabhaViewService } from './vidhan-sabha-view.service';
+import { UtilsService } from 'src/app/shared/service/utils.service';
+declare var $: any;
 @Component({
   selector: 'app-vidhan-sabha-view',
   templateUrl: './vidhan-sabha-view.component.html',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VidhanSabhaViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(public vidhanSabhaViewService: VidhanSabhaViewService, public utilsService: UtilsService) { }
 
   ngOnInit() {
+    // this.vidhanSabhaViewService.getAllLokSabha();
+    this.vidhanSabhaViewService.getListOFVidhanSabha();
   }
+
 
 }

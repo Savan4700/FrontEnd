@@ -16,10 +16,6 @@ import { Location } from '@angular/common';
 // import * as jsPDF from 'jspdf';
 // import 'jspdf-autotable';
 declare var $: any;
-// import * as pdfMake from 'pdfmake/build/pdfmake.js';
-// import * as pdfFonts from 'pdfmake/build/vfs_fonts.js';
-// pdfMake.vfs = pdfFonts.pdfMake.vfs;
-// import * as html2canvas from 'html2canvas';
 @Injectable()
 export class UtilsService {
 
@@ -60,19 +56,7 @@ export class UtilsService {
   msgFromDeleteAPIOnConflicts: string;
 
 
-  // doc.save('table.pdf');
 
-  // public config: ToasterConfig =
-  //   new ToasterConfig({
-  //     showCloseButton: true,
-  //     tapToDismiss: false,
-  //     timeout: 1000,
-  //     animation: 'fade out',
-  //     limit: 1,
-  //     positionClass: 'toast-top-center',
-  //     newestOnTop: true,
-  //     mouseoverTimerStop: true
-  //   });
 
   previousUrl: string;
 
@@ -125,22 +109,7 @@ export class UtilsService {
   }
 
 
-  // downloadPdfByElementId(elementId: string) {
-  //   html2canvas(document.getElementById(elementId))
-  //     .then((canvas) => {
-  //       const data = canvas.toDataURL();
-  //       const docDefinition = {
-  //         content: [{
-  //           image: data,
-  //           fit: [520, 100000]
-  //         }]
-  //       };
-  //       pdfMake.createPdf(docDefinition).download();
-  //     })
-  //     .catch(err => {
-  //       console.log('error canvas', err);
-  //     });
-  // }
+
   /**
    * This Method Is Use From Remove Empty Element From Array
    * @param test_array  your selected array pass as args.
@@ -219,8 +188,9 @@ export class UtilsService {
       // const serverResponse = Deserialize(response, ResponseWrapperDTO);
       // if (!(serverResponse.status < 200 || serverResponse.status >= 300)) {
       //   console.log('IF.. success response');
-      //   if (isDisplayToast) {
+        if (isDisplayToast) {
       //     console.log('isdisplay message');
+      this.CreateNotification('success', 'Success..!', 'Save Successfully.');
       // this.setConfigAndDisplayPopUpNotification('success', '', serverResponse.message);
       // if (isToastAndDataBothRequired) {
       //   callback(serverResponse.data, true);
@@ -229,7 +199,7 @@ export class UtilsService {
       // callback(undefined, true);
       // callback(serverResponse.data, true);
       // return;
-      // }
+      }
       // console.log('serverResponse.data' + serverResponse.data);
       // if (serverResponse.data && typeof serverResponse.data !== 'string') {
       //   console.log('string..');
@@ -240,7 +210,7 @@ export class UtilsService {
       (err: HttpErrorResponse) => {
         console.log(`Backend returned code ${err.status}, body was: ${err.message}`);
         if (err.status === 0) {
-          // this.CreateNotification('error', 'Error', 'Server down.');
+          this.CreateNotification('error', 'Error', 'Server down.');
           // this.setConfigAndDisplayPopUpNotification('error', '', 'Server down..');
           callback('serverdown', false);
         } else {
@@ -302,7 +272,7 @@ export class UtilsService {
       }
       // const serverResponse = Deserialize(response, ResponseWrapperDTO);
 
-      // if (serverResponse.status < 200 || serverResponse.status >= 300) {
+      // if (response.status < 200 || response.status >= 300) {
       // this.CreateNotification('error', 'Error..!', serverResponse.message);
       // this.setConfigAndDisplayPopUpNotification('error', '', serverResponse.message);
       // } else {
@@ -312,7 +282,7 @@ export class UtilsService {
       (err: HttpErrorResponse) => {
         console.log(`Backend returned code ${err.status}, body was: ${err.message}`);
         if (err.status === 0) {
-          // this.CreateNotification('error', 'Error', 'Server down.');
+          this.CreateNotification('error', 'Error', 'Server down.');
           // this.setConfigAndDisplayPopUpNotification('error', '', 'Server down..');
         } else {
           // const errorDTO = Deserialize(err.error, ResponseWrapperDTO);
@@ -426,7 +396,7 @@ export class UtilsService {
       (err: HttpErrorResponse) => {
         console.log(`Backend returned code ${err.status}, body was: ${err.message}`);
         if (err.status === 0) {
-          // this.CreateNotification('error', 'Error', 'Server down.');
+          this.CreateNotification('error', 'Error', 'Server down.');
           // this.setConfigAndDisplayPopUpNotification('error', '', 'Server down..');
         } else {
           // const errorDTO = Deserialize(err.error, ResponseWrapperDTO);
@@ -507,9 +477,9 @@ export class UtilsService {
    */
   CreateNotification(type, message, content) {
     let timeOut = 0;
-    if (type === 'success') {
-      timeOut = 5000;
-    }
+    // if (type === 'success') {
+      timeOut = 2000;
+    // }
     this._service.create(message, content, type, {
       timeOut: timeOut,
       showProgressBar: true,

@@ -32,6 +32,8 @@ export class LokSabhaCreateComponent implements OnInit {
     if (this.lokSabhaCreateService.opertaion !== 'create') {
       this.lokSabhaCreateService.textForAddorUpdate = 'Edit';
       this.lokSabhaCreateService.getbyId();
+    } else {
+      this.lokSabhaCreateService.textForAddorUpdate = 'New';
     }
   });
   }

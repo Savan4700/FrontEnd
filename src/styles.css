@@ -87,3 +87,8 @@
 .time_slots li a.selected {color: #555;background: #dcdcdc;}
 .simple-notification-wrapper {z-index: 10000!important ; }
 .myclass:focus { border: none; outline: none; }
+
+/* add bu me */
+.modal-open {
+  padding-right: 0px !important;
+}

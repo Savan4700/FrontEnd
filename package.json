@@ -22,7 +22,6 @@
     "@angular/router": "~7.0.0",
     "@ng-bootstrap/ng-bootstrap": "^4.0.0",
     "angular2-notifications": "^2.0.0",
-    "angular2-toaster": "^7.0.0",
     "bootstrap": "^3.3.7",
     "cerialize": "^0.1.18",
     "core-js": "^2.5.4",

@@ -15,7 +15,7 @@ Email: sandip7023@gmail.com
 /*******************
 /*Top bar
 *******************/
-.topbar { background: #ec8e1c; }
+.topbar { background: #008b8b; }
 .topbar .navbar-header { background: rgba(0, 0, 0, 0.05); }
 .topbar .top-navbar .navbar-header .navbar-brand .dark-logo { display: none; }
 .topbar .top-navbar .navbar-header .navbar-brand .light-logo { display: inline-block; color: rgba(255, 255, 255, 0.8); }
@@ -27,9 +27,9 @@ Email: sandip7023@gmail.com
 a.link:hover, a.link:focus { color: #2288e3 !important; }
 .bg-theme { background-color: #2288e3 !important; }
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus { background-color: #2288e3; border-color: #2288e3; }
-.right-sidebar .rpanel-title { background: #2288e3; }
+.right-sidebar .rpanel-title { background: #2a908b; }
 .stylish-table tbody tr:hover, .stylish-table tbody tr.active { border-left: 4px solid #2288e3; }
-.text-themecolor { color: #2288e3 !important; }
+.text-themecolor { color: #2a908b !important; }
 .profile-tab li a.nav-link.active, .customtab li a.nav-link.active { border-bottom: 2px solid #2288e3; color: #2288e3; }
 .profile-tab li a.nav-link:hover, .customtab li a.nav-link:hover { color: #2288e3; }
 /*******************
